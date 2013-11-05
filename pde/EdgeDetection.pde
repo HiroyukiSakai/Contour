@@ -4,7 +4,7 @@
 float[][] kernel = {{ -1, -1, -1}, 
                     { -1,  9, -1}, 
                     { -1, -1, -1}};
-                    
+
 PImage img;
 
 void setup() { 
