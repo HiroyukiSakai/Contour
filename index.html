@@ -54,11 +54,12 @@
       </div>
     </div>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <div class="literally" style="height: 500px;"><canvas style="height: 500px"></canvas></div>
-      </div>
+    <div class="container">
+      <div id="literally" class="literally" style="height: 512px;"><canvas ></canvas></div>
+      <div class="processing"><canvas data-processing-sources="pde/EdgeDetection.pde"></canvas></div>
+      <p>
+          <a href="#" id="fullscreen-test">Test fullscreen</a>
+      </p>
     </div>
 
     <div class="container">
@@ -69,6 +70,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/processing-1.4.1.min.js"></script>
         <script src="js/vendor/underscore-min.js"></script>
         <script src="js/vendor/literallycanvas/js/literallycanvas.min.js"></script>
 
@@ -85,6 +87,22 @@
               if (e.target === document.documentElement) {
                 return e.preventDefault();
               }
+            });
+            
+            // http://davidwalsh.name/fullscreen
+            // Find the right method, call on correct element
+            function launchFullScreen(element) {
+              if(element.requestFullScreen) {
+                element.requestFullScreen();
+              } else if(element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+              } else if(element.webkitRequestFullScreen) {
+                element.webkitRequestFullScreen();
+              }
+            }
+            
+            $('#fullscreen-test').click(function() {
+                launchFullScreen(document.documentElement); // any individual element
             });
           });
         </script>
