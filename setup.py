@@ -3,11 +3,11 @@
 from setuptools import setup
 
 setup(
-    name='YourAppName',
-    version='1.0',
-    description='OpenShift App',
-    author='Your Name',
-    author_email='example@example.com',
-    url='http://www.python.org/sigs/distutils-sig/',
+    name='Contour',
+    version='0.0.1',
+    description='Web-based drawing game',
+    author='Hiroyuki Sakai',
+    author_email='hiroyuki.sakai@alumni.tuwien.ac.at',
+    url='http://contour-sakai.rhcloud.com/',
     install_requires=['Django<=1.4'],
 )
