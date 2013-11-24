@@ -11,68 +11,38 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="js/vendor/literallycanvas/css/literally.css">
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
-    <body>
+    <body class="view-game">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Contour</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-          </ul>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
-
-    <div class="container">
-      <div id="literally" class="literally" style="height: 512px;"><canvas ></canvas></div>
-      <div class="processing"><canvas data-processing-sources="pde/EdgeDetection.pde"></canvas></div>
-      <p>
-          <a href="#" id="fullscreen-test">Test fullscreen</a>
-      </p>
-    </div>
-
-    <div class="container">
-      <footer>
-        <p>&copy; Hiroyuki Sakai 2013</p>
-      </footer>
-    </div> <!-- /container -->        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        
+        <div id="literally" class="literally"><canvas></canvas></div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
-
+        
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/processing-1.4.1.min.js"></script>
         <script src="js/vendor/underscore-min.js"></script>
         <script src="js/vendor/literallycanvas/js/literallycanvas.min.js"></script>
-
+        
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-
+        
         <script type="text/javascript">
           $(document).ready(function() {
             // the only LC-specific thing we have to do
-            $('.literally').literallycanvas({imageURLPrefix: 'js/vendor/literallycanvas/img'});
-        
+            $('.literally').literallycanvas({
+                backgroundColor: '#ffffff',
+                imageURLPrefix: 'js/vendor/literallycanvas/img',
+                keyboardShortcuts: false
+            });
+            
             // you may want to disable scrolling on touch devices
             $(document).bind('touchmove', function(e) {
               if (e.target === document.documentElement) {
@@ -97,7 +67,7 @@
             });
           });
         </script>
-
+        
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
