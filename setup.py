@@ -11,6 +11,6 @@ setup(
     url='http://contour-sakai.rhcloud.com/',
     install_requires=[
         'Django<=1.4',
-        'pil>=1.1.7',
+        'PIL',
     ],
 )
