@@ -1,4 +1,4 @@
-import os
+import os, PIL.image
 from django.shortcuts import render_to_response
 
 def home(request):
