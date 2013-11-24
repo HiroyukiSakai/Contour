@@ -1,4 +1,4 @@
-import os, PIL.image
+import os, PIL.image, foobar
 from django.shortcuts import render_to_response
 
 def home(request):
