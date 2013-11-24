@@ -1,5 +1,7 @@
 import os
 from django.shortcuts import render_to_response
+from PIL import Image
 
-def index(request):
-    return render_to_response('index.html')
+def home(request):
+    src_im = Image.open("winter3.jpg")
+    return render_to_response('home/home.html')
