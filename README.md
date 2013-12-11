@@ -19,6 +19,7 @@ Client-side:
 Server-side:
 
 * [Python](http://www.python.org) v2.6
+* [Pillow](https://pypi.python.org/pypi/Pillow/2.2.1) v2.2.1
 * [MySQL](http://www.mysql.com) v5.1
 * [Django](https://www.djangoproject.com) v1.4
 
