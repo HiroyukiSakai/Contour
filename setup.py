@@ -10,7 +10,7 @@ setup(
     author_email='hiroyuki.sakai@alumni.tuwien.ac.at',
     url='http://contour-sakai.rhcloud.com/',
     install_requires=[
-        'Django<=1.4',
-        'PIL>=1.1.7',
+        'Django==1.4',
+        'Pillow==2.2.1',
     ],
 )
