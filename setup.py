@@ -10,10 +10,11 @@ setup(
     author_email='hiroyuki.sakai@alumni.tuwien.ac.at',
     url='http://contour-sakai.rhcloud.com/',
     install_requires=[
+        'Cython==0.19.2',
         'Django==1.6.1',
-        'Pillow==2.3.0',
+        'Pillow==2.2.1',
         'numpy==1.8.0',
-        'scipy==0.13.2',
+        'scipy==0.12.1',
         'scikit-image==0.9.3'
     ],
 )
