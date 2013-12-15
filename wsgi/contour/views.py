@@ -9,7 +9,7 @@ from skimage import filter
 
 
 # Generate noisy image of a square
-im = np.zeros((128, 128))
+'''im = np.zeros((128, 128))
 im[32:-32, 32:-32] = 1
 
 im = ndimage.rotate(im, 15, mode='constant')
@@ -47,3 +47,9 @@ plt.show()
 
 def index(request):
     return render_to_response('index.html', {"format": src_im.format})
+'''
+
+from django.shortcuts import render_to_response
+
+def index(request):
+     return render_to_response('index.html')

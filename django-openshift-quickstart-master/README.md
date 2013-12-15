@@ -1,33 +1,3 @@
-Contour
-=======
-
-Web-based drawing game.
-
-Third party technologies:
-
-Client-side:
-
-* [HTML5 Boilerplate](http://html5boilerplate.com) v4.3.0
-* [Bootstrap](http://getbootstrap.com) v3.0.2
-* [Modernizr](http://modernizr.com) v2.6.2
-* [Respond](https://github.com/scottjehl/Respond) v1.1.0
-* [jQuery](http://jquery.com) v2.0.3
-* [Processing.js](http://processingjs.org) v1.4.1
-* [Underscore.js](http://underscorejs.org) v1.5.2
-    * [Literally Canvas](http://literallycanvas.com) v0.2.1
-
-Server-side:
-
-* [Python](http://www.python.org) v2.6
-* [Pillow](https://pypi.python.org/pypi/Pillow/2.2.1) v2.2.1
-* [NumPy](http://www.numpy.org) v1.8.0
-* [SciPy](http://www.scipy.org) v0.12.1
-* [scikit-image](http://www.scikit-image.org) v0.9.3
-* [MySQL](http://www.mysql.com) v5.1
-* [Django](https://www.djangoproject.com) v1.6.1
-
-Copyright (C) 2013 Hiroyuki Sakai
-
 Django 1.6 on OpenShift
 =======================
 

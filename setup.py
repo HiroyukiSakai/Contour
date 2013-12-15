@@ -11,9 +11,9 @@ setup(
     url='http://contour-sakai.rhcloud.com/',
     install_requires=[
         'Django==1.6.1',
-        'Pillow==2.2.1',
+        'Pillow==2.3.0',
         'numpy==1.8.0',
-        'scipy==0.12.1',
+        'scipy==0.13.2',
         'scikit-image==0.9.3'
     ],
 )
