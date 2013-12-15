@@ -1,12 +1,12 @@
 import os
 from django.shortcuts import render_to_response
 
+'''
 import numpy as np
 from scipy import ndimage
 from skimage import filter
 
 # Generate noisy image of a square
-'''
 im = np.zeros((128, 128))
 im[32:-32, 32:-32] = 1
 
