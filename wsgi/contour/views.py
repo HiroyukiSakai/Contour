@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 
 import numpy as np
 from scipy import ndimage
-
 from skimage import filter
 
 # Generate noisy image of a square
@@ -42,13 +41,9 @@ plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9,
 
 plt.show()
 
-#Canny(os.path.join(os.getenv('OPENSHIFT_DATA_DIR'), "lenna.png"), 10)
-
 def index(request):
     return render_to_response('index.html', {"format": src_im.format})
 '''
-
-from django.shortcuts import render_to_response
 
 def index(request):
      return render_to_response('index.html')
