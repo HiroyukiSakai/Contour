@@ -1,16 +1,13 @@
 import os
 from django.shortcuts import render_to_response
 
-'''
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy import ndimage
 
 from skimage import filter
-'''
 
 # Generate noisy image of a square
-'''im = np.zeros((128, 128))
+im = np.zeros((128, 128))
 im[32:-32, 32:-32] = 1
 
 im = ndimage.rotate(im, 15, mode='constant')
@@ -21,6 +18,7 @@ im += 0.2 * np.random.random(im.shape)
 edges1 = filter.canny(im)
 edges2 = filter.canny(im, sigma=3)
 
+'''
 # display results
 plt.figure(figsize=(8, 3))
 
