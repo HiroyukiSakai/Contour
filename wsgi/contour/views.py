@@ -6,6 +6,7 @@ from scipy import ndimage
 from skimage import filter
 
 # Generate noisy image of a square
+'''
 im = np.zeros((128, 128))
 im[32:-32, 32:-32] = 1
 
@@ -17,7 +18,6 @@ im += 0.2 * np.random.random(im.shape)
 edges1 = filter.canny(im)
 edges2 = filter.canny(im, sigma=3)
 
-'''
 # display results
 plt.figure(figsize=(8, 3))
 
