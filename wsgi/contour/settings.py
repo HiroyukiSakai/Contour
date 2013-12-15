@@ -67,7 +67,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'wsgi.contour'
 
 TEMPLATE_DIRS = (
      os.path.join(BASE_DIR,'templates'),
