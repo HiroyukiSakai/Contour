@@ -20,8 +20,11 @@ Server-side:
 
 * [Python](http://www.python.org) v2.6
 * [Pillow](https://pypi.python.org/pypi/Pillow/2.2.1) v2.2.1
+* [NumPy](http://www.numpy.org) v1.8.0
+* [SciPy](http://www.scipy.org) v0.12.1
+* [scikit-image](http://www.scikit-image.org) v0.9.3
 * [MySQL](http://www.mysql.com) v5.1
-* [Django](https://www.djangoproject.com) v1.4
+* [Django](https://www.djangoproject.com) v1.6.1
 
 Copyright (C) 2013 Hiroyuki Sakai
 
