@@ -1,8 +1,8 @@
 import os
 from django.shortcuts import render_to_response
 
-'''
 import numpy as np
+'''
 from scipy import ndimage
 from skimage import filter
 
