@@ -1,4 +1,4 @@
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("Hello, world. You're at the poll index.")
+    return render_to_response('index.html')
