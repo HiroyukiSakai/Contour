@@ -18,12 +18,12 @@ Client-side:
 
 Server-side:
 
-* [Python](http://www.python.org) v3.3
+* [Python](http://www.python.org) v2.7
 * [PIL](http://www.pythonware.com/products/pil/) v1.1.7
 * [NumPy](http://www.numpy.org) v1.8.0
 * [SciPy](http://www.scipy.org) v0.13.1
 * [scikit-image](http://www.scikit-image.org) v0.7.1
-* [Django](https://www.djangoproject.com) v1.6
+* [Django](https://www.djangoproject.com) v1.3.7
 
 * [MySQL](http://www.mysql.com)
 
