@@ -3,8 +3,6 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-django.VERSION
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'Contour.views.home', name='home'),
