@@ -7,6 +7,9 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'Contour.contour.views.index'),
+    url(r'^main_menu/$', 'Contour.contour.views.main_menu'),
+    url(r'^game/$', 'Contour.contour.views.game'),
+
     # url(r'^Contour/', include('Contour.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
