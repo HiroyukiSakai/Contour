@@ -1,6 +1,6 @@
 # Django settings for Contour project.
 
-import south
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
