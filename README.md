@@ -8,13 +8,12 @@ Third party technologies:
 Client-side:
 
 * [HTML5 Boilerplate](http://html5boilerplate.com) v4.3.0
-* [Bootstrap](http://getbootstrap.com) v3.0.2
+* [Bootstrap](http://getbootstrap.com) v3.0.3
 * [Modernizr](http://modernizr.com) v2.6.2
 * [Respond](https://github.com/scottjehl/Respond) v1.1.0
-* [jQuery](http://jquery.com) v2.0.3
-* [Processing.js](http://processingjs.org) v1.4.1
+* [jQuery](http://jquery.com) v2.1.0
 * [Underscore.js](http://underscorejs.org) v1.5.2
-    * [Literally Canvas](http://literallycanvas.com) v0.2.1
+    * [Literally Canvas](http://literallycanvas.com) v0.3-rc2
 
 Server-side:
 
@@ -27,4 +26,4 @@ Server-side:
 
 * [MySQL](http://www.mysql.com)
 
-Copyright (C) 2013 Hiroyuki Sakai
+Copyright (C) 2014 Hiroyuki Sakai
