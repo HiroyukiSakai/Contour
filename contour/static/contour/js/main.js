@@ -31,11 +31,11 @@ $(function() {
         }
     });
 
-    if ('literallycanvas' in $) {
+    if (jQuery().literallycanvas) {
         // the only LC-specific thing we have to do
         $('.view-game .literally').literallycanvas({
             backgroundColor: '#ffffff',
-            imageURLPrefix: '{{ STATIC_URL }}contour/vendor/literallycanvas/img',
+            imageURLPrefix: '/static/contour/vendor/literallycanvas/img',
             keyboardShortcuts: false
         });
     }

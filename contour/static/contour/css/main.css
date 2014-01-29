@@ -67,6 +67,11 @@ h6,
   height: 100%;
 }
 
+.view-game #literally canvas {
+  background: no-repeat center center;
+  background-size: auto 100%;
+}
+
 .view-main-menu .main-menu {
   text-align: center;
   padding-bottom: 120px;
