@@ -18,7 +18,7 @@
             }
         </style>
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{{ STATIC_URL }}contour/js/vendor/literallycanvas.jquery/css/literally.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/vendor/literallycanvas/css/literally.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/main.css">
 
         <script src="{{ STATIC_URL }}contour/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -67,7 +67,7 @@
 
         <script src="{{ STATIC_URL }}contour/js/vendor/bootstrap.min.js"></script>
         <script src="{{ STATIC_URL }}contour/js/vendor/underscore-min.js"></script>
-        <script src="{{ STATIC_URL }}contour/js/vendor/literallycanvas.jquery/js/literallycanvas.jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/vendor/literallycanvas/js/literallycanvas.jquery.min.js"></script>
 
         <script src="{{ STATIC_URL }}contour/js/plugins.js"></script>
         <script src="{{ STATIC_URL }}contour/js/main.js"></script>
@@ -75,7 +75,7 @@
         <script type="text/javascript">
           $(document).ready(function() {
             // the only LC-specific thing we have to do
-            $('.literally').literallycanvas({imageURLPrefix: '{{ STATIC_URL }}contour/js/vendor/literallycanvas.jquery/img'});
+            $('.literally').literallycanvas({imageURLPrefix: '{{ STATIC_URL }}contour/vendor/literallycanvas.jquery/img'});
 
             // you may want to disable scrolling on touch devices
             $(document).bind('touchmove', function(e) {

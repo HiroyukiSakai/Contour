@@ -75,6 +75,7 @@ h6,
 
 .view-main-menu .main-menu .logo {
   font-size: 63px;
+  font-weight: normal;
   margin-bottom: 60px;
 }
 
@@ -110,4 +111,8 @@ h6,
   font-size: 24px;
   margin-bottom: 20px;
   margin-top: 0;
+}
+
+.view-main-menu #upload-btn {
+    display: none;
 }

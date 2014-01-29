@@ -6,13 +6,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Contour</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 {% load static %}
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/bootstrap.min.css">
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ STATIC_URL }}contour/js/vendor/literallycanvas/css/literally.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/vendor/jasny-bootstrap/css/jasny-bootstrap.min.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/main.css">
 
         <script src="{{ STATIC_URL }}contour/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -31,8 +31,14 @@
                                 <p>Just upload your own image and draw away.</p>
                                 <form enctype="multipart/form-data" action="/" method="post">
                                     {% csrf_token %}
-                                    {{ form }}
-                                    <input type="submit" value="Upload">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="fileinput">
+                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                        <div>
+                                            <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="file"></span>
+                                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" id="upload-btn">Upload</button>
                                 </form>
                             </div>
                             <div class="col-md-6">
@@ -106,6 +112,7 @@
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}contour/js/vendor/jquery-2.1.0.min.js"><\/script>')</script>
 
         <script src="{{ STATIC_URL }}contour/js/vendor/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 
         <script src="{{ STATIC_URL }}contour/js/plugins.js"></script>
         <script src="{{ STATIC_URL }}contour/js/main.js"></script>
