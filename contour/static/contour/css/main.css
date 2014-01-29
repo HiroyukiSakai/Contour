@@ -57,6 +57,7 @@ h6,
 .h5,
 .h6 {
   font-family: "Varela Round";
+  font-weight: bold;
 }
 
 
@@ -72,7 +73,7 @@ h6,
   padding-top: 120px;
 }
 
-.view-main-menu .main-menu h1 {
+.view-main-menu .main-menu .logo {
   font-size: 63px;
   margin-bottom: 60px;
 }
@@ -103,4 +104,10 @@ h6,
 
 .view-main-menu .main-menu #accordion-options .panel-title a:hover {
   text-decoration: none;
+}
+
+.view-main-menu #play-modal h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: 0;
 }

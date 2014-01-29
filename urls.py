@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'Contour.contour.views.index'),
+    url(r'^$', 'Contour.contour.views.main_menu'),
     url(r'^main_menu/$', 'Contour.contour.views.main_menu'),
     url(r'^game/$', 'Contour.contour.views.game'),
 

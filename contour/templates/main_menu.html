@@ -10,22 +10,45 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 {% load static %}
-        <link rel="stylesheet" href="{% get_static_prefix %}contour/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/bootstrap.min.css">
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% get_static_prefix %}contour/js/vendor/literallycanvas/css/literally.css">
-        <link rel="stylesheet" href="{% get_static_prefix %}contour/css/main.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/js/vendor/literallycanvas/css/literally.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/main.css">
 
-        <script src="{% get_static_prefix %}contour/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body class="view-main-menu">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+        <div class="modal fade" id="play-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Draw your own</h2>
+                                <p>Just upload your own image and draw away.</p>
+                                <form enctype="multipart/form-data" action="/" method="post">
+                                    {% csrf_token %}
+                                    {{ form }}
+                                    <input type="submit" value="Upload">
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <h2>Flickr (coming soon)</h2>
+                                <p>Draw an image from the flickr community.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="wrap">
             <div class="container main-menu">
-                <h1>Contour</h1>
+                <h1 class="logo">Contour</h1>
                 <p>
-                    <button type="button" class="btn btn-primary btn-lg btn-play"><i class="fa fa-pencil-square-o"></i> Play</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-play" data-toggle="modal" data-target="#play-modal"><i class="fa fa-pencil-square-o"></i> Play</button>
                 </p>
 
                 <div class="panel-group" id="accordion-options">
@@ -80,12 +103,12 @@
         </div>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{% get_static_prefix %}contour/js/vendor/jquery-2.1.0.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}contour/js/vendor/jquery-2.1.0.min.js"><\/script>')</script>
 
-        <script src="{% get_static_prefix %}contour/js/vendor/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/vendor/bootstrap.min.js"></script>
 
-        <script src="{% get_static_prefix %}contour/js/plugins.js"></script>
-        <script src="{% get_static_prefix %}contour/js/main.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/plugins.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/main.js"></script>
 
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

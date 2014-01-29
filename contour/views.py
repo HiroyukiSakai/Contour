@@ -1,9 +1,27 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 
-import flickrapi, numpy as np, secret
+import flickrapi, numpy as np
 from scipy import ndimage
 from skimage import data, filter, io, segmentation
-from set_metrics import hausdorff_distance
+
+import secret
+from .forms import UploadFileForm
+from .set_metrics import hausdorff_distance
+
+
+def handle_uploaded_file(file, filename):
+    with open('/home/Hiro/Contour/contour/media/' + filename, 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
+
+    image = io.imread('/home/Hiro/Contour/contour/media/' + filename, as_grey=True)
+    edges = 1 - filter.canny(image, sigma=3)
+    io.imsave('/home/Hiro/Contour/contour/media/' + filename, edges * 255)
+
+    distance = hausdorff_distance(edges, edges)
+
 
 flickr = flickrapi.FlickrAPI(secret.FLICKR_API_KEY)
 '''
@@ -14,20 +32,6 @@ for photo in flickr.walk(tag_mode='all',
     print photo.get('title')
 '''
 
-# fileupload
-
-# flickr
-    # random or per search query
-
-# Generate noisy image of a square
-im = io.imread('/home/Hiro/Contour/contour/static/contour/img/lenna.tiff', as_grey=True)
-im += 0.2 * np.random.random(im.shape)
-
-# First trial with the Canny filter, with the default smoothing
-edges = 1 - filter.canny(im, sigma=3)
-
-io.imsave('/home/Hiro/Contour/contour/output.png', edges * 255)
-
 
 # display image on canvas
 
@@ -35,17 +39,21 @@ io.imsave('/home/Hiro/Contour/contour/output.png', edges * 255)
 
 # hausdorff distance
 
-distance = hausdorff_distance(edges, edges)
-
 # save image and high score
 
-def index(request):
-    return render_to_response('index.html', {
-        'distance': distance
-    })
-
 def main_menu(request):
-    return render_to_response('main_menu.html')
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'], request.FILES['file'].name)
+            return render_to_response('game.html', {
+                'image': request.FILES['file'].name,
+            }, context_instance=RequestContext(request))
+    else:
+        form = UploadFileForm()
+    return render_to_response('main_menu.html', {
+        'form': form,
+    }, context_instance=RequestContext(request))
 
 def game(request):
     return render_to_response('game.html')

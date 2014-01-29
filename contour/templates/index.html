@@ -10,18 +10,18 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 {% load static %}
-        <link rel="stylesheet" href="{% get_static_prefix %}contour/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/bootstrap.min.css">
         <style>
             body {
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
         </style>
-        <link rel="stylesheet" href="{% get_static_prefix %}contour/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% get_static_prefix %}contour/js/vendor/literallycanvas.jquery/css/literally.css">
-        <link rel="stylesheet" href="{% get_static_prefix %}contour/css/main.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/js/vendor/literallycanvas.jquery/css/literally.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/main.css">
 
-        <script src="{% get_static_prefix %}contour/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -51,6 +51,11 @@
         {{ distance }}
         <a href="#" id="fullscreen-test">Test fullscreen</a>
       </p>
+      <form enctype="multipart/form-data" action="/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Upload">
+      </form>
     </div>
 
     <div class="container">
@@ -58,19 +63,19 @@
         <p>&copy; Hiroyuki Sakai 2013</p>
       </footer>
     </div> <!-- /container -->        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{% get_static_prefix %}contour/js/vendor/jquery-2.1.0.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}contour/js/vendor/jquery-2.1.0.min.js"><\/script>')</script>
 
-        <script src="{% get_static_prefix %}contour/js/vendor/bootstrap.min.js"></script>
-        <script src="{% get_static_prefix %}contour/js/vendor/underscore-min.js"></script>
-        <script src="{% get_static_prefix %}contour/js/vendor/literallycanvas.jquery/js/literallycanvas.jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/vendor/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/vendor/underscore-min.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/vendor/literallycanvas.jquery/js/literallycanvas.jquery.min.js"></script>
 
-        <script src="{% get_static_prefix %}contour/js/plugins.js"></script>
-        <script src="{% get_static_prefix %}contour/js/main.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/plugins.js"></script>
+        <script src="{{ STATIC_URL }}contour/js/main.js"></script>
 
         <script type="text/javascript">
           $(document).ready(function() {
             // the only LC-specific thing we have to do
-            $('.literally').literallycanvas({imageURLPrefix: '{% get_static_prefix %}contour/js/vendor/literallycanvas.jquery/img'});
+            $('.literally').literallycanvas({imageURLPrefix: '{{ STATIC_URL }}contour/js/vendor/literallycanvas.jquery/img'});
 
             // you may want to disable scrolling on touch devices
             $(document).bind('touchmove', function(e) {
