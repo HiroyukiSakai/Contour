@@ -1,5 +1,26 @@
 {% extends "base.html" %}
 
+{% comment %}
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% block title %}Contour · Finished session{% endblock %}
+
 {% block body_class %}view-completed{% endblock %}
 
 {% block content %}
@@ -7,8 +28,8 @@
     <div class="lead">
         <h2>Awesome!</h2>
         <p class="lead">
-            You've finished your drawing session and reached a score of <strong>{{ score|floatformat:2 }}</strong>.<br>
-            Do you want to save your statistics?
+            You've finished your drawing session and reached a score of <strong>{{ track_session.score|floatformat:2 }}</strong>.<br>
+            Do you want to save your score?
         </p>
         <form class="form-inline" role="form" method="post" action="/">
             <div class="form-group">
@@ -19,11 +40,16 @@
             {{ save_session_form.save_session.as_hidden }}
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
-        <form class="form-inline" role="form" method="post" action="/">
+        <form id="no-form" class="form-inline" role="form" method="post" action="/">
             {% csrf_token %}
             {{ discard_session_form.discard_session.as_hidden }}
             <button type="submit" class="btn btn-default">No, thanks</button>
         </form>
     </div>
+    {% if track_session %}
+        {% include "session_score.html" with track_session=track_session drawings=drawings %}
+    {% else %}{% if drawing %}
+        {% include "drawing_score.html" with drawing=drawing %}
+    {% endif %}{% endif %}
 </div>
 {% endblock %}

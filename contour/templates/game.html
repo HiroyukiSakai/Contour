@@ -1,11 +1,37 @@
 {% extends "base.html" %}
 
+{% comment %}
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% block title %}Contour · {{ image.title }}{% endblock %}
+
 {% block body_class %}view-game{% endblock%}
 
 {% block content %}
 <script>
 var imageWidth = {{ image.edge_image.width }};
 var imageHeight = {{ image.edge_image.height }};
+{% if clear_canvas %}
+    var clearCanvas = true;
+{% else %}
+    var clearCanvas = false;
+{% endif %}
 </script>
 
 <div class="modal fade" id="processing-modal" tabindex="-1" role="dialog" aria-labelledby="processing-modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -15,7 +41,7 @@ var imageHeight = {{ image.edge_image.height }};
                 <h2 class="modal-title" id="processing-modal-label">Processing...</h2>
             </div>
             <div class="modal-body">
-                <p>Please wait a few minutes while the server is processing your drawing.</p>
+                <p>Please wait a few seconds while the server is processing your drawing.</p>
             </div>
         </div>
     </div>
@@ -42,10 +68,11 @@ var imageHeight = {{ image.edge_image.height }};
 <div class="row title-bar">
     <div class="col-md-4 col-sm-4 placeholder"></div>
     <h2 class="col-md-4 col-sm-4 col-xs-6 title">
+    {% if image_number %}{{ image_number }}{% endif %}{% if image_count %}/{{ image_count }}{% endif %}
     {% if image.url %}
-        <a href="{{ image.url }}" target="_blank">{{ image.title }}{% if image.author %} by {{ image.author }}{% endif %}</a>
+        <a href="{{ image.url }}" target="_blank"><strong>{{ image.title|slice:"20" }}{% if image.title|length > 20 %}...{% endif %}</strong>{% if image.author %} by <strong>{{ image.author }}</strong>{% endif %}</a>
     {% else %}
-        {{ image.title }}{% if image.author %} by {{ image.author }}{% endif %}
+        <strong>{{ image.title }}</strong>{% if image.author %} by <strong>{{ image.author }}</strong>{% endif %}
     {% endif %}
     </h2>
     <div class="col-md-4 col-sm-4 col-xs-6 score">

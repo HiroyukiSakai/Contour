@@ -1,3 +1,22 @@
+/*
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
@@ -33,6 +52,25 @@ body {
 
 
 /* General styles */
+
+div.lead {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+div.lead h2 {
+    font-size: 42px;
+    margin-bottom: 30px;
+}
+
+div.lead p.lead {
+    margin-bottom: 30px;
+}
+
+div.lead .form-inline {
+    display: inline-block;
+}
 
 footer {
     margin-top: 20px;
@@ -93,6 +131,17 @@ h6,
     padding-top: 120px;
 }
 
+@media(max-width: 767px) {
+    .view-main-menu .main-menu {
+        padding-bottom: 30px;
+        padding-top: 30px;
+    }
+
+    .view-main-menu .main-menu .logo {
+        margin-bottom: 30px !important;
+    }
+}
+
 .view-main-menu .main-menu .logo {
     font-size: 63px;
     font-weight: normal;
@@ -127,10 +176,17 @@ h6,
     text-decoration: none;
 }
 
+.view-main-menu #about-modal h3 {
+    margin-top: 20px;
+}
+
+.view-main-menu #play-modal .tab-pane {
+    padding-top: 20px;
+}
+
 .view-main-menu #upload-btn {
     display: none;
 }
-
 
 .view-game,
 .view-game #literally .toolbar
@@ -140,6 +196,7 @@ h6,
 
 .view-game #literally {
     margin: 0 auto;
+    height: 90%;
 }
 
 .view-game #literally canvas {
@@ -261,7 +318,6 @@ h6,
 .view-game .title-bar .title {
     font-family: "Varela Round";
     font-size: 18px;
-    font-weight: bold;
     line-height: 32px;
     margin: 0;
 }
@@ -270,21 +326,9 @@ h6,
     text-align: right;
 }
 
-.view-completed div.lead {
-    margin-top: 50px;
-    text-align: center;
+@media(max-width: 767px) {
+    .view-completed #no-form {
+        display: block !important;
+        margin-top: 15px;
+    }
 }
-
-.view-completed div.lead h2 {
-    font-size: 42px;
-    margin-bottom: 30px;
-}
-
-.view-completed div.lead p.lead {
-    margin-bottom: 30px;
-}
-
-.view-completed div.lead .form-inline {
-    display: inline-block;
-}
-

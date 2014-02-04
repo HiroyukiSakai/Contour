@@ -1,0 +1,52 @@
+{% comment %}
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Original</th>
+                <th>Edge image</th>
+                <th>Drawing</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for drawing in drawings %}
+            <tr class="magnific-popup-container">
+                <td>{{ drawing.image.title }}</td>
+                <td><a href="{{ MEDIA_URL }}{{ drawing.image.image }}" class="magnific-popup-item" title="{{ drawing.image.title }}{% if drawing.image.author %} by {{ drawing.image.author }}{% endif %}"><i class="fa fa-external-link"></i></a></td>
+                <td><a href="{{ MEDIA_URL }}{{ drawing.image.edge_image }}" class="magnific-popup-item" title="{{ drawing.image.title }} edge image"><i class="fa fa-external-link"></i></a></td>
+                <td><a href="{{ MEDIA_URL }}{{ drawing.drawing }}" class="magnific-popup-item" title="{{ drawing.image.title }} drawing"><i class="fa fa-external-link"></i></a></td>
+                <td>{{ drawing.score|floatformat:2 }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>{{ track_session.score|floatformat:2 }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

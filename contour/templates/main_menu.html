@@ -1,8 +1,35 @@
 {% extends "base.html" %}
 
+{% comment %}
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
 {% block body_class %}view-main-menu{% endblock %}
 
 {% block content %}
+<script>
+{% if clear_canvas %}
+    var clearCanvas = true;
+{% else %}
+    var clearCanvas = false;
+{% endif %}
+</script>
+
 <div class="modal fade" id="play-modal" tabindex="-1" role="dialog" aria-labelledby="play-modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -11,8 +38,13 @@
                 <h2 class="modal-title" id="play-modal-label">New game</h2>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tracks" data-toggle="tab">Tracks</a></li>
+                    <li><a href="#your-image" data-toggle="tab">Your image</a></li>
+                    <li><a href="#flickr" data-toggle="tab">Flickr</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tracks">
                         <h3>Tracks</h3>
                         <p>Draw a given set of images.</p>
                         <p>
@@ -21,28 +53,148 @@
                         {% endfor %}
                         </p>
                     </div>
-                    <div class="col-md-6">
-                        <h3>Draw your own</h3>
+                    <div class="tab-pane" id="your-image">
+                        <h3>Your image</h3>
                         <p>Upload your own image and draw away.</p>
-                        <form enctype="multipart/form-data" method="post">
+                        <form enctype="multipart/form-data" method="post" action="{% url Contour.contour.views.canvas %}">
                             {% csrf_token %}
                             <div class="fileinput fileinput-new" data-provides="fileinput" id="fileinput">
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                                 <div>
-                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{{ form.file }}</span>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{{ upload_file_form.file }}</span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary" id="upload-btn">Upload</button>
                         </form>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Flickr (coming soon)</h3>
-                        <p>Draw an image from the flickr community.</p>
+                    <div class="tab-pane" id="flickr">
+                        <h3>Flickr</h3>
+                        <p>Draw an image from the Flickr community.</p>
+                        <form class="form-inline" role="form" method="post" action="{% url Contour.contour.views.canvas %}">
+                            {% csrf_token %}
+                            {{ search_flickr_form.search_flickr.as_hidden }}
+                            <div class="form-group">
+                                <label class="sr-only" for="query">Query</label>
+                                <input name="query" type="query" class="form-control" id="query" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="highscores-modal" tabindex="-1" role="dialog" aria-labelledby="highscores-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" id="highscores-modal-label">Highscores</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                {% for key, highscore_table in highscore_tables.items %}
+                    <li{% if forloop.first %} class="active"{% endif %}><a href="#{{ key|lower }}" data-toggle="tab">{{ key }}</a></li>
+                {% endfor %}
+                    <li><a href="#single-drawings" data-toggle="tab">Single drawings</a></li>
+                </ul>
+                <div class="tab-content">
+                {% for key, highscore_table in highscore_tables.items %}
+                    <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ key|lower }}">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Player</th>
+                                        <th>Date</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for highscore_row in highscore_table %}
+                                    <tr>
+                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ forloop.counter }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ highscore_row.player.name }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ highscore_row.datetime|date }} {{ highscore_row.datetime|time }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ highscore_row.score|floatformat:2 }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+                    <div class="tab-pane" id="single-drawings">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Player</th>
+                                        <th>Title</th>
+                                        <th>Date</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for highscore in single_drawing_highscores %}
+                                    <tr>
+                                        <td><a href="{% url Contour.contour.views.drawing highscore.id %}" target="_blank">{{ forloop.counter }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.drawing highscore.id %}" target="_blank">{{ highscore.player.name }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.drawing highscore.id %}" target="_blank">{{ highscore.image.title|slice:"20" }}{% if highscore.image.title|length > 20 %}...{% endif %}</a></td>
+                                        <td><a href="{% url Contour.contour.views.drawing highscore.id %}" target="_blank">{{ highscore.datetime|date }} {{ highscore.datetime|time }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.drawing highscore.id %}" target="_blank">{{ highscore.score|floatformat:2 }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="about-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" id="about-modal-label">About Contour</h2>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Contour is an open source, web-based drawing game developed by Hiroyuki Sakai. It was carried out within the scope of an <a href="https://tiss.tuwien.ac.at/course/courseDetails.xhtml?windowId=9b8&amp;courseNr=188935" target="_blank">university practicum</a> under the friendly supervision of <a href="https://www.ims.tuwien.ac.at/people/horst-eidenberger" target="_blank">Prof. Horst Eidenberger</a>. The project can be found on <a href="https://github.com/HiroyukiSakai/Contour" target="_blank">GitHub</a>.
+                </p>
+                <h3>How to play?</h3>
+                <p>
+                    There are currently three available game modes:
+                </p>
+                <ol>
+                    <li><strong>Tracks</strong> are given sets of images which have to be drawn in succession. The score of each drawing is assessed individually and finally added up to form the final score.</li>
+                    <li><strong>Your images</strong> can be drawn as well. Just use the upload form for this purpose.</li>
+                    <li>You can also draw a picture from the <strong>Flickr</strong> community. Just supply some search terms and draw the found image.</li>
+                </ol>
+                <h3>How does it work?</h3>
+                <p>
+                    As a first step, the edges of a given image are calculated using the <a href="http://en.wikipedia.org/wiki/Canny_edge_detector" target="_blank">Canny edge detection</a> algorithm. The resulting edge image is used as a template on the drawing canvas.
+                </p>
+                <p>
+                    The score of a drawing is assessed by calculating the <a href="http://en.wikipedia.org/wiki/Hausdorff_distance" target="_blank">Hausdorff distance</a> between the given edge image and the user drawing. Precisely, the score is given by the following equation:
+                </p>
+                <p>
+                    <em>score = (distance_max - distance) ÷ distance_max × 100</em>
+                </p>
+                <p>
+                    Where <em>distance_max</em> is the Hausdorff distance between the given edge image and an "empty image".
+                </p>
+                <h3>Technical limitations</h3>
+                <p>
+                    Unfortunately, the third party component <a href="http://literallycanvas.com/" target="_blank">LiterallyCanvas</a>, which is used for the interactive drawing canvases, is currently not working on the standard browser on Samsung's Android devices. The best way to play Contour on such devices is to use the <a href="https://play.google.com/store/apps/details?id=com.android.chrome" target="_blank">Chrome web browser</a>.
+                </p>
             </div>
         </div>
     </div>
@@ -98,8 +250,9 @@
     <div class="container">
         <footer>
             <p>
-                <span class="item"><a href="about.html">About</a></span>
-                <span class="item"><a href="highscores.html">Highscores</a></span>
+                <span class="item"><a href="#" data-toggle="modal" data-target="#about-modal">About</a></span>
+                <span class="item"><a href="#" data-toggle="modal" data-target="#highscores-modal">Highscores</a></span>
+                <span class="item"><a href="https://github.com/HiroyukiSakai/Contour" target="_blank">GitHub</a></span>
             </p>
             <p>
                 <span class="item">&copy; Hiroyuki Sakai {% now "Y" %}</span>

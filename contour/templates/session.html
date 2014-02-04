@@ -1,4 +1,6 @@
-'''
+{% extends "base.html" %}
+
+{% comment %}
     Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
 
     This file is part of Contour.
@@ -15,24 +17,18 @@
 
     You should have received a copy of the GNU General Public License
     along with Contour.  If not, see <http://www.gnu.org/licenses/>.
-'''
+{% endcomment %}
 
-from django import forms
+{% block title %}Contour · {{ track_session.player.name }}'s session{% endblock %}
 
+{% block body_class %}view-session{% endblock %}
 
-class FinishDrawingForm(forms.Form):
-    finish_drawing  = forms.BooleanField(required=True, initial=True)
-
-class DiscardSessionForm(forms.Form):
-    discard_session  = forms.BooleanField(required=True, initial=True)
-
-class SaveSessionForm(forms.Form):
-    name = forms.CharField(max_length=255)
-    save_session  = forms.BooleanField(required=True, initial=True)
-
-class UploadFileForm(forms.Form):
-    file  = forms.FileField(required=True)
-
-class SearchFlickrForm(forms.Form):
-    query = forms.CharField(max_length=255)
-    search_flickr  = forms.BooleanField(required=True, initial=True)
+{% block content %}
+<div class="container">
+    <div class="lead">
+        <h2>{{ track_session.player.name }}'s drawing session</h2>
+        <p>{{ track_session.datetime|date }} {{ track_session.datetime|time }}</p>
+    </div>
+    {% include "session_score.html" with track_session=track_session drawings=drawings %}
+</div>
+{% endblock %}
