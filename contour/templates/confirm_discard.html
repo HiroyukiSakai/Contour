@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% comment %}
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% block title %}Contour · Discard session?{% endblock %}
+
+{% block body_class %}view-confirm-discard{% endblock %}
+
+{% block content %}
+<div class="modal fade" id="discard-modal" tabindex="-1" role="dialog" aria-labelledby="discard-modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="discard-modal-label">Do you want to discard your session?</h2>
+            </div>
+            <div class="modal-body">
+                <p>You have currently a running drawing session. You'll lose all progress if you choose to discard it.</p>
+            </div>
+            <div class="modal-footer">
+                {% load url from future %}
+                <a href="{% url view_name id %}" type="button" class="btn btn-default">Cancel</a>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.discard_session.as_hidden }}
+                    <button type="submit" class="btn btn-danger">Discard session</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

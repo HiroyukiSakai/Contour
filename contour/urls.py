@@ -17,22 +17,19 @@
     along with Contour.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-from django import forms
+from django.conf.urls.defaults import patterns, include, url
+
+# Uncomment the next two lines to enable the admin:
+from django.contrib import admin
 
 
-class FinishDrawingForm(forms.Form):
-    finish_drawing  = forms.BooleanField(required=True, initial=True)
+admin.autodiscover()
 
-class DiscardSessionForm(forms.Form):
-    discard_session  = forms.BooleanField(required=True, initial=True)
-
-class SaveSessionForm(forms.Form):
-    name = forms.CharField(max_length=255)
-    save_session  = forms.BooleanField(required=True, initial=True)
-
-class UploadFileForm(forms.Form):
-    file  = forms.FileField(required=True)
-
-class SearchFlickrForm(forms.Form):
-    query = forms.CharField(max_length=255)
-    search_flickr  = forms.BooleanField(required=True, initial=True)
+urlpatterns = patterns('',
+    url(r'^$', 'Contour.contour.views.index'),
+    url(r'^canvas/$', 'Contour.contour.views.canvas'),
+    url(r'^canvases/(\d+)/$', 'Contour.contour.views.canvas'),
+    url(r'^tracks/(\d+)/$', 'Contour.contour.views.track'),
+    url(r'^drawings/(\d+)/$', 'Contour.contour.views.drawing'),
+    url(r'^sessions/(\d+)/$', 'Contour.contour.views.session'),
+)

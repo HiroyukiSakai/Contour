@@ -17,22 +17,21 @@
     along with Contour.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-from django import forms
+from django.contrib import admin
+
+from .models import *
 
 
-class FinishDrawingForm(forms.Form):
-    finish_drawing  = forms.BooleanField(required=True, initial=True)
+class TrackImageInline(admin.TabularInline):
+    model = Track.images.through
 
-class DiscardSessionForm(forms.Form):
-    discard_session  = forms.BooleanField(required=True, initial=True)
+    ordering = ['order']
 
-class SaveSessionForm(forms.Form):
-    name = forms.CharField(max_length=255)
-    save_session  = forms.BooleanField(required=True, initial=True)
+class TrackAdmin(admin.ModelAdmin):
+    inlines = [TrackImageInline]
 
-class UploadFileForm(forms.Form):
-    file  = forms.FileField(required=True)
-
-class SearchFlickrForm(forms.Form):
-    query = forms.CharField(max_length=255)
-    search_flickr  = forms.BooleanField(required=True, initial=True)
+admin.site.register(Track, TrackAdmin)
+admin.site.register(Image)
+admin.site.register(TrackSession)
+admin.site.register(Drawing)
+admin.site.register(Player)

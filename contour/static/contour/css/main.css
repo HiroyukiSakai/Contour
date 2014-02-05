@@ -1,3 +1,22 @@
+/*
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
@@ -11,37 +30,56 @@
 
 html,
 body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
 }
 
 /* Wrapper for page content to push down footer */
 #wrap {
-  min-height: 100%;
-  height: auto;
-  /* Negative indent footer by its height */
-  margin: 0 auto -90px;
-  /* Pad bottom by footer height */
-  padding: 0 0 90px;
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -90px;
+    /* Pad bottom by footer height */
+    padding: 0 0 90px;
 }
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 90px;
-  background-color: #f5f5f5;
+    height: 90px;
+    background-color: #f5f5f5;
 }
 
 
 /* General styles */
 
+div.lead {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+div.lead h2 {
+    font-size: 42px;
+    margin-bottom: 30px;
+}
+
+div.lead p.lead {
+    margin-bottom: 30px;
+}
+
+div.lead .form-inline {
+    display: inline-block;
+}
+
 footer {
-  margin-top: 20px;
-  text-align: center;
+    margin-top: 20px;
+    text-align: center;
 }
 
 footer .item {
-  display: inline-block;
-  margin-right: 1em;
+    display: inline-block;
+    margin-right: 1em;
 }
 
 h1,
@@ -56,68 +94,241 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Varela Round";
-  font-weight: bold;
+    font-family: "Varela Round";
+    font-weight: bold;
+}
+
+.modal-body h1,
+.modal-body h2,
+.modal-body h3,
+.modal-body h4,
+.modal-body h5,
+.modal-body h6 {
+    font-size: 17px;
+    margin-top: 0;
+}
+
+.modal-body .col-md-6 {
+    margin-bottom: 30px;
+}
+
+.modal-footer form {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.modal-title {
+    font-size: 18px;
+    margin-bottom: 0;
 }
 
 
 /* View dependent styles */
 
-.view-game #literally {
-  height: 100%;
-}
-
-.view-game #literally canvas {
-  background: no-repeat center center;
-  background-size: auto 100%;
-}
-
 .view-main-menu .main-menu {
-  text-align: center;
-  padding-bottom: 120px;
-  padding-top: 120px;
+    text-align: center;
+    padding-bottom: 120px;
+    padding-top: 120px;
+}
+
+@media(max-width: 767px) {
+    .view-main-menu .main-menu {
+        padding-bottom: 30px;
+        padding-top: 30px;
+    }
+
+    .view-main-menu .main-menu .logo {
+        margin-bottom: 30px !important;
+    }
 }
 
 .view-main-menu .main-menu .logo {
-  font-size: 63px;
-  font-weight: normal;
-  margin-bottom: 60px;
+    font-size: 63px;
+    font-weight: normal;
+    margin-bottom: 60px;
 }
 
 .view-main-menu .main-menu #accordion-options,
 .view-main-menu .main-menu .btn-play{
-  width: 200px;
+    width: 200px;
 }
 
 .view-main-menu .main-menu #accordion-options {
-  display: inline-block;
-  text-align: left;
+    display: inline-block;
+    text-align: left;
 }
 
 .view-main-menu .main-menu #accordion-options .panel {
-  border-radius: 6px;
+    border-radius: 6px;
 }
 
 .view-main-menu .main-menu #accordion-options .panel-title {
-  font-size: 18px;
-  line-height: 1.33;
-  text-align: center;
+    font-size: 18px;
+    line-height: 1.33;
+    text-align: center;
 }
 
 .view-main-menu .main-menu #accordion-options .panel-title a {
-  display: block;
+    display: block;
 }
 
 .view-main-menu .main-menu #accordion-options .panel-title a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-.view-main-menu #play-modal h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  margin-top: 0;
+.view-main-menu #about-modal h3 {
+    margin-top: 20px;
+}
+
+.view-main-menu #play-modal .tab-pane {
+    padding-top: 20px;
 }
 
 .view-main-menu #upload-btn {
     display: none;
+}
+
+.view-game,
+.view-game #literally .toolbar
+{
+    background-color: #f5f5f5;
+}
+
+.view-game #literally {
+    margin: 0 auto;
+    height: 90%;
+}
+
+.view-game #literally canvas {
+    background: no-repeat center center;
+    background-size: auto 100%;
+}
+
+.view-game #literally button.button {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.view-game #literally .toolbar-row-right {
+    width: 16em;
+}
+
+
+.view-game .append-to-literally-toolbar {
+    display: none;
+}
+
+.view-game #literally .append-to-literally-toolbar,
+.view-game #literally .append-to-literally-toolbar form {
+    display: inline-block;
+}
+
+.view-game #literally .action-buttons > :nth-child(3),
+.view-game #literally .background-picker,
+.view-game #literally .toolbar > .toolbar-row:nth-child(2),
+.view-game #literally .zoom-display {
+    display:none;
+}
+
+.view-game #literally .button {
+    background-color: White;
+    background-image: none; /* four times to override vendor specific styles */
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    line-height: 22px;
+    text-shadow: none;
+}
+
+.view-game #literally .button:hover {
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+
+.view-game #literally .button.active {
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+.view-game #literally .button.danger {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: White;
+}
+
+.view-game #literally .button.danger:hover {
+    background-color: #d2322d;
+    border-color: #ac2925;
+}
+
+.view-game #literally .button.success {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: White;
+}
+
+.view-game #literally .button.success:hover {
+    background-color: #47a447;
+    border-color: #398439;
+}
+
+.view-game #literally .button-group .button:first-child {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.view-game #literally .button-group .button:last-child {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.view-game #literally .tool-image-wrapper {
+    padding-top: 2px;
+}
+
+.view-game #literally .toolbar-row {
+    border-color: #ccc;
+}
+
+.view-game #literally .toolbar-row-left {
+    overflow: hidden;
+    width: 63px;
+}
+
+.view-game .title-bar {
+    color: #333;
+    font-size: 18px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    text-align: center;
+}
+
+@media(max-width: 767px) {
+    .view-game .title-bar .placeholder {
+        display: none;
+    }
+
+    .view-game .title-bar .title {
+        text-align: left;
+    }
+}
+
+.view-game .title-bar .title {
+    font-family: "Varela Round";
+    font-size: 18px;
+    line-height: 32px;
+    margin: 0;
+}
+
+.view-game .title-bar .score {
+    text-align: right;
+}
+
+@media(max-width: 767px) {
+    .view-completed #no-form {
+        display: block !important;
+        margin-top: 15px;
+    }
 }
