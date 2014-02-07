@@ -184,6 +184,14 @@ h6,
     padding-top: 20px;
 }
 
+.view-main-menu #play-modal .form-slider-group {
+    margin-top: 20px;
+}
+
+.view-main-menu #play-modal .form-slider-group label {
+    margin-right: 10px;
+}
+
 .view-main-menu #upload-btn {
     display: none;
 }
@@ -323,6 +331,7 @@ h6,
 }
 
 .view-game .title-bar .score {
+    font-family: "Varela Round";
     text-align: right;
 }
 

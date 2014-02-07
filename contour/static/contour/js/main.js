@@ -33,6 +33,10 @@ $(function() {
         $('#refresh-modal').modal('show') ;
     });
 
+    $("[data-toggle='tooltip']").tooltip();
+
+    $('.slider').slider();
+
     if (typeof clearCanvas !== 'undefined' && clearCanvas) {
         localStorage.removeItem(localStorageKey);
     }
@@ -47,10 +51,26 @@ $(function() {
         }
     });
 
+    $('.view-main-menu #play-modal #flickr form').submit(function(event) {
+        $inputField = $('.view-main-menu #play-modal #flickr input[name="query"]');
+        if (!$inputField.val()) {
+            event.preventDefault();
+            $inputField.parents('.form-group').addClass('has-error');
+        }
+    });
+
     $('.view-game .refresh').click(function(event) {
         event.preventDefault();
         localStorage.removeItem(localStorageKey);
         location.reload();
+    });
+
+    $('.view-completed form.form-save').submit(function(event) {
+        $inputField = $('.view-completed form.form-save input[name="name"]');
+        if (!$inputField.val()) {
+            event.preventDefault();
+            $inputField.parents('.form-group').addClass('has-error');
+        }
     });
 
     $('.magnific-popup-container').magnificPopup({

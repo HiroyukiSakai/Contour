@@ -17,13 +17,14 @@
     along with Contour.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import base64, os, urllib
+import base64, os, pdb, urllib
 
 from django.core.files import File
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 
 import flickrapi, numpy as np
+from scipy import misc
 from skimage import filter, io, transform
 
 import secret
@@ -31,6 +32,7 @@ from .. import settings
 from .forms import *
 from .models import *
 from .set_metrics import *
+from .util import _slugify
 
 
 def create_session(request, view_name, id):
@@ -117,15 +119,22 @@ def process_image(request, image):
 
         # save edge image
         temp_filename = '/tmp/' + request.session.session_key + '.png'
-        io.imsave(temp_filename, (1 - edges) * 255)
-        image.edge_image.save(os.path.splitext(os.path.basename(image.image.name))[0] + '.png', File(open(temp_filename)))
+        io.imsave(temp_filename, ~edges * 1.)
+        image.edge_image.save(_slugify(os.path.splitext(os.path.basename(image.image.name))[0]) + '.png', File(open(temp_filename)))
         os.remove(temp_filename)
 
     # save maximum hausdorff distance (needed for score calculation)
     if not image.max_hausdorff_distance:
         zeros = np.zeros(image.edge_image.height * image.edge_image.width).reshape((image.edge_image.height, image.edge_image.width))
         edge_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.edge_image.name), as_grey=True)
-        image.max_hausdorff_distance = hausdorff_distance(1 - edge_image, zeros)
+
+        zeros = zeros.astype(np.float64)
+        edge_image = edge_image.astype(np.float64)
+
+        if edge_image.max() > 1.:
+            edge_image /= 255.
+
+        image.max_hausdorff_distance = hausdorff_distance(zeros, 1. - edge_image)
         image.save()
 
 
@@ -146,9 +155,22 @@ def handle_finished_drawing(request):
 
                 # calculate Hausdorff distance
                 greyscale_drawing = io.imread(temp_filename, as_grey=True)
-                greyscale_drawing = transform.resize(greyscale_drawing, [image.edge_image.height, image.edge_image.width])
+                greyscale_drawing = misc.imresize(greyscale_drawing, (image.edge_image.height, image.edge_image.width), mode='F')
                 edge_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.edge_image.name), as_grey=True)
-                distance = hausdorff_distance(1 - greyscale_drawing, 1 - edge_image)
+
+                greyscale_drawing = greyscale_drawing.astype(np.float64)
+                edge_image = edge_image.astype(np.float64)
+
+                # correct ranges of images if necessary
+                if greyscale_drawing.max() > 1.:
+                    greyscale_drawing /= 255.
+                if edge_image.max() > 1.:
+                    edge_image /= 255.
+
+                #io.imsave('/tmp/A.png', 1. - greyscale_drawing)
+                #io.imsave('/tmp/B.png', 1. - edge_image)
+
+                distance = hausdorff_distance(1. - greyscale_drawing, 1. - edge_image)
                 score = (image.max_hausdorff_distance - distance) / image.max_hausdorff_distance * 100
 
                 # save drawing
@@ -162,34 +184,38 @@ def handle_finished_drawing(request):
                 return drawing
     return
 
-def handle_uploaded_file(request):
+def handle_uploaded_file(request, form):
     file = request.FILES['file']
+    sigma = form.cleaned_data['sigma']
 
     # save file
-    temp_filename = '/tmp/' + request.session.session_key + '.png'
+    temp_filename = '/tmp/' + request.session.session_key
     with open(temp_filename, 'wb+') as destination:
         for chunk in file.chunks():
             destination.write(chunk)
 
-    image = Image(title=file.name)
-    image.image.save(file.name, File(open(temp_filename)))
+    image = Image(title=_slugify(file.name), canny_sigma=sigma)
+    split = os.path.splitext(os.path.basename(file.name))
+    image.image.save(_slugify(split[0]) + split[1], File(open(temp_filename)))
     image.save()
 
     os.remove(temp_filename)
 
     return image
 
-# currently disabled
-def handle_flickr_search(request, query):
+def handle_flickr_search(request, form):
+    query = form.cleaned_data['query']
+    sigma = form.cleaned_data['sigma']
+
     flickr = flickrapi.FlickrAPI(secret.FLICKR_API_KEY)
     for photo in flickr.walk(text=query, extras='1'):
 
-        temp_filename = '/tmp/' + request.session.session_key + '.png'
+        temp_filename = '/tmp/' + request.session.session_key + '.jpg'
         urllib.urlretrieve('http://farm' + photo.get('farm') + '.staticflickr.com/' + photo.get('server') + '/' + photo.get('id') + '_' + photo.get('secret') + '.jpg', temp_filename)
 
-        title = photo.get('title')
-        image = Image(title=title, url='http://www.flickr.com/photos/' + photo.get('owner') + '/' + photo.get('id'))
-        image.image.save(title, File(open(temp_filename)))
+        title = _slugify(str(photo.get('title')))
+        image = Image(title=title, url='http://www.flickr.com/photos/' + photo.get('owner') + '/' + photo.get('id'), canny_sigma=sigma)
+        image.image.save(title[:64] + '.jpg', File(open(temp_filename)))
         image.save()
 
         os.remove(temp_filename)
@@ -234,13 +260,13 @@ def canvas(request, id=None):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            image = handle_uploaded_file(request)
+            image = handle_uploaded_file(request, form)
             if image:
                 id = image.id
 
         form = SearchFlickrForm(request.POST)
         if form.is_valid():
-            image = handle_flickr_search(request, form.cleaned_data['query'])
+            image = handle_flickr_search(request, form)
             if image:
                 id = image.id
 

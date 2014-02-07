@@ -26,12 +26,12 @@
 {% block content %}
 <div class="container">
     <div class="lead">
-        <h2>Awesome!</h2>
+        <h2><i class="fa fa-smile-o"></i><br>Awesome!</h2>
         <p class="lead">
-            You've finished your drawing session and reached a score of <strong>{{ track_session.score|floatformat:2 }}</strong>.<br>
+            You've finished your drawing session and reached a score of <strong>{% if track_session %}{{ track_session.score|floatformat:2 }}{% else %}{% if drawing %}{{ drawing.score|floatformat:2 }}{% endif %}{% endif %}</strong>.<br>
             Do you want to save your score?
         </p>
-        <form class="form-inline" role="form" method="post" action="/">
+        <form class="form-inline form-save" role="form" method="post" action="/">
             <div class="form-group">
                 <label class="sr-only" for="name">Your name</label>
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your name">

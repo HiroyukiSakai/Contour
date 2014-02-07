@@ -21,7 +21,7 @@
 
 import os, secret
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

@@ -26,11 +26,13 @@
         <title>{% block title %}Contour{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         {% load static %}
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/vendor/jasny-bootstrap/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/vendor/jquery.magnific-popup/magnific-popup.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}contour/vendor/bootstrap-slider/css/slider.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/css/main.css">
 
         <link rel="stylesheet" href="{{ STATIC_URL }}contour/vendor/literallycanvas/css/literally.css">
@@ -51,6 +53,7 @@
         <script src="{{ STATIC_URL }}contour/vendor/jquery.magnific-popup/jquery.magnific-popup.min.js"></script>
         <script src="{{ STATIC_URL }}contour/js/vendor/underscore-min.js"></script>
         <script src="{{ STATIC_URL }}contour/vendor/literallycanvas/js/literallycanvas.jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}contour/vendor/bootstrap-slider/js/bootstrap-slider.js"></script>
 
         <script src="{{ STATIC_URL }}contour/js/plugins.js"></script>
         <script src="{{ STATIC_URL }}contour/js/main.js"></script>

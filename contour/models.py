@@ -26,13 +26,22 @@ class Image(models.Model):
     url = models.URLField(blank=True)
     image = models.ImageField(upload_to='images/')
     edge_image = models.ImageField(upload_to='edge_images/', blank=True)
-    canny_sigma = models.FloatField(default=1)
+    canny_sigma = models.FloatField(default=2)
     canny_low_threshold = models.FloatField(default=.1)
     canny_high_threshold = models.FloatField(default=.2)
     max_hausdorff_distance = models.FloatField(blank=True, null=True)
 
     def __unicode__(self):
         return self.title + ' (' + str(self.image) + ')'
+
+    def delete(self, *args, **kwargs):
+        image_storage, image_path = self.image.storage, self.image.path
+        edge_image_storage, edge_image_path = self.edge_image.storage, self.edge_image.path
+        # Delete the model before the file
+        super(Image, self).delete(*args, **kwargs)
+        # Delete the file after the model
+        image_storage.delete(image_path)
+        edge_image_storage.delete(edge_image_path)
 
 class Track(models.Model):
     title = models.CharField(max_length=255)
@@ -63,7 +72,7 @@ class TrackSession(models.Model):
     track = models.ForeignKey(Track)
     score = models.FloatField()
     session_key = models.CharField(max_length=32)
-    datetime = models.DateTimeField(auto_now=True)
+    datetime = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         string = str(self.datetime) + ' '
@@ -88,3 +97,10 @@ class Drawing(models.Model):
             string += str(self.player) + ': '
         string += self.image.title
         return string
+
+    def delete(self, *args, **kwargs):
+        drawing_storage, drawing_path = self.drawing.storage, self.drawing.path
+        # Delete the model before the file
+        super(Drawing, self).delete(*args, **kwargs)
+        # Delete the file after the model
+        drawing_storage.delete(drawing_path)

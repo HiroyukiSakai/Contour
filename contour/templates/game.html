@@ -38,7 +38,7 @@ var imageHeight = {{ image.edge_image.height }};
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="processing-modal-label">Processing...</h2>
+                <h2 class="modal-title" id="processing-modal-label"><i class="fa fa-clock-o"></i> Processing...</h2>
             </div>
             <div class="modal-body">
                 <p>Please wait a few seconds while the server is processing your drawing.</p>
@@ -52,7 +52,7 @@ var imageHeight = {{ image.edge_image.height }};
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="refresh-modal-label">Do you want to refresh the page?</h2>
+                <h2 class="modal-title" id="refresh-modal-label"><i class="fa fa-exclamation-triangle"></i> Do you want to refresh the page?</h2>
             </div>
             <div class="modal-body">
                 Refreshing the page is necessary if the browser window has been resized. Your progress on the current drawing canvas will <strong>not</strong> be lost.
@@ -76,7 +76,7 @@ var imageHeight = {{ image.edge_image.height }};
     {% endif %}
     </h2>
     <div class="col-md-4 col-sm-4 col-xs-6 score">
-        Score: {{ score|floatformat:2 }}
+        <i class="fa fa-star-o"></i> Score: {{ score|floatformat:2 }}
     </div>
 </div>
 <div id="literally" class="literally"><canvas style="background-image: url('{{ MEDIA_URL }}{{ image.edge_image }}');"></canvas></div>

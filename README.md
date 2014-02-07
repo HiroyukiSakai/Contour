@@ -15,6 +15,7 @@ Client-side:
 * [Underscore.js](http://underscorejs.org) v1.5.2
     * [Literally Canvas](http://literallycanvas.com) v0.3-rc4
 * [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/) v0.9.9
+* [Slider for Bootstrap](http://www.eyecon.ro/bootstrap-slider/) v2.0.0
 
 Server-side:
 
