@@ -1,0 +1,1039 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>contour Package &mdash; Contour 1.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Contour 1.0.1 documentation" href="index.html" />
+    <link rel="up" title="Contour Package" href="Contour.html" />
+    <link rel="next" title="management Package" href="Contour.contour.management.html" />
+    <link rel="prev" title="Contour Package" href="Contour.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Contour.contour.management.html" title="management Package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Contour.html" title="Contour Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Contour 1.0.1 documentation</a> &raquo;</li>
+          <li><a href="Contour.html" accesskey="U">Contour Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="contour-package">
+<h1>contour Package<a class="headerlink" href="#contour-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-Contour.contour.admin">
+<span id="admin-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">admin</span></tt> Module<a class="headerlink" href="#module-Contour.contour.admin" title="Permalink to this headline">¶</a></h2>
+<p>Describes the representation of models in the admin interface.</p>
+<dl class="class">
+<dt id="Contour.contour.admin.TrackAdmin">
+<em class="property">class </em><tt class="descclassname">Contour.contour.admin.</tt><tt class="descname">TrackAdmin</tt><big>(</big><em>model</em>, <em>admin_site</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/admin.html#TrackAdmin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.admin.TrackAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.ModelAdmin</span></tt></p>
+<p>Describes the representation of tracks in the admin interface.</p>
+<dl class="attribute">
+<dt id="Contour.contour.admin.TrackAdmin.inlines">
+<tt class="descname">inlines</tt><em class="property"> = [&lt;class 'Contour.contour.admin.TrackImageInline'&gt;]</em><a class="headerlink" href="#Contour.contour.admin.TrackAdmin.inlines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.admin.TrackAdmin.media">
+<tt class="descname">media</tt><a class="headerlink" href="#Contour.contour.admin.TrackAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.admin.TrackImageInline">
+<em class="property">class </em><tt class="descclassname">Contour.contour.admin.</tt><tt class="descname">TrackImageInline</tt><big>(</big><em>parent_model</em>, <em>admin_site</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/admin.html#TrackImageInline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.admin.TrackImageInline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.admin.options.TabularInline</span></tt></p>
+<p>Describes the representation of images in the track admin interface.</p>
+<dl class="attribute">
+<dt id="Contour.contour.admin.TrackImageInline.media">
+<tt class="descname">media</tt><a class="headerlink" href="#Contour.contour.admin.TrackImageInline.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.admin.TrackImageInline.model">
+<tt class="descname">model</tt><a class="headerlink" href="#Contour.contour.admin.TrackImageInline.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">TrackImage</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.admin.TrackImageInline.ordering">
+<tt class="descname">ordering</tt><em class="property"> = ['order']</em><a class="headerlink" href="#Contour.contour.admin.TrackImageInline.ordering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Contour.contour.forms">
+<span id="forms-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">forms</span></tt> Module<a class="headerlink" href="#module-Contour.contour.forms" title="Permalink to this headline">¶</a></h2>
+<p>Forms which describe the asynchronous communication between server and client.</p>
+<dl class="class">
+<dt id="Contour.contour.forms.DiscardSessionForm">
+<em class="property">class </em><tt class="descclassname">Contour.contour.forms.</tt><tt class="descname">DiscardSessionForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/forms.html#DiscardSessionForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.forms.DiscardSessionForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<p>Form used for the discarding of sessions.</p>
+<dl class="attribute">
+<dt id="Contour.contour.forms.DiscardSessionForm.base_fields">
+<tt class="descname">base_fields</tt><em class="property"> = {'discard_session': &lt;django.forms.fields.BooleanField object at 0x37da0d0&gt;}</em><a class="headerlink" href="#Contour.contour.forms.DiscardSessionForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.forms.DiscardSessionForm.media">
+<tt class="descname">media</tt><a class="headerlink" href="#Contour.contour.forms.DiscardSessionForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.forms.FinishDrawingForm">
+<em class="property">class </em><tt class="descclassname">Contour.contour.forms.</tt><tt class="descname">FinishDrawingForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/forms.html#FinishDrawingForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.forms.FinishDrawingForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<p>Form used for the submission of drawings.</p>
+<dl class="attribute">
+<dt id="Contour.contour.forms.FinishDrawingForm.base_fields">
+<tt class="descname">base_fields</tt><em class="property"> = {'finish_drawing': &lt;django.forms.fields.BooleanField object at 0x37da050&gt;}</em><a class="headerlink" href="#Contour.contour.forms.FinishDrawingForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.forms.FinishDrawingForm.media">
+<tt class="descname">media</tt><a class="headerlink" href="#Contour.contour.forms.FinishDrawingForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.forms.SaveSessionForm">
+<em class="property">class </em><tt class="descclassname">Contour.contour.forms.</tt><tt class="descname">SaveSessionForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/forms.html#SaveSessionForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.forms.SaveSessionForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<p>Form used for the saving of track sessions (for highscore tracking).</p>
+<dl class="attribute">
+<dt id="Contour.contour.forms.SaveSessionForm.base_fields">
+<tt class="descname">base_fields</tt><em class="property"> = {'name': &lt;django.forms.fields.CharField object at 0x37da150&gt;, 'save_session': &lt;django.forms.fields.BooleanField object at 0x37da210&gt;}</em><a class="headerlink" href="#Contour.contour.forms.SaveSessionForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.forms.SaveSessionForm.media">
+<tt class="descname">media</tt><a class="headerlink" href="#Contour.contour.forms.SaveSessionForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.forms.SearchFlickrForm">
+<em class="property">class </em><tt class="descclassname">Contour.contour.forms.</tt><tt class="descname">SearchFlickrForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/forms.html#SearchFlickrForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.forms.SearchFlickrForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<p>Form used for the submitting the Flickr search query.</p>
+<dl class="attribute">
+<dt id="Contour.contour.forms.SearchFlickrForm.base_fields">
+<tt class="descname">base_fields</tt><em class="property"> = {'query': &lt;django.forms.fields.CharField object at 0x37da390&gt;, 'search_flickr': &lt;django.forms.fields.BooleanField object at 0x37da450&gt;, 'sigma': &lt;django.forms.fields.FloatField object at 0x37da4d0&gt;}</em><a class="headerlink" href="#Contour.contour.forms.SearchFlickrForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.forms.SearchFlickrForm.media">
+<tt class="descname">media</tt><a class="headerlink" href="#Contour.contour.forms.SearchFlickrForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.forms.UploadFileForm">
+<em class="property">class </em><tt class="descclassname">Contour.contour.forms.</tt><tt class="descname">UploadFileForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.util.ErrorList'&gt;</em>, <em>label_suffix=':'</em>, <em>empty_permitted=False</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/forms.html#UploadFileForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.forms.UploadFileForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.forms.forms.Form</span></tt></p>
+<p>Form used for the upload of files.</p>
+<dl class="attribute">
+<dt id="Contour.contour.forms.UploadFileForm.base_fields">
+<tt class="descname">base_fields</tt><em class="property"> = {'file': &lt;django.forms.fields.FileField object at 0x37da290&gt;, 'sigma': &lt;django.forms.fields.FloatField object at 0x37da310&gt;}</em><a class="headerlink" href="#Contour.contour.forms.UploadFileForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.forms.UploadFileForm.media">
+<tt class="descname">media</tt><a class="headerlink" href="#Contour.contour.forms.UploadFileForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Contour.contour.models">
+<span id="models-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">models</span></tt> Module<a class="headerlink" href="#module-Contour.contour.models" title="Permalink to this headline">¶</a></h2>
+<p>Describes the models used in Contour.</p>
+<dl class="class">
+<dt id="Contour.contour.models.Drawing">
+<em class="property">class </em><tt class="descclassname">Contour.contour.models.</tt><tt class="descname">Drawing</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#Drawing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.Drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Stores a drawing conducted by a player.</p>
+<dl class="exception">
+<dt id="Contour.contour.models.Drawing.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#Contour.contour.models.Drawing.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Contour.contour.models.Drawing.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Drawing.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#Contour.contour.models.Drawing.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.datetime">
+<tt class="descclassname">Drawing.</tt><tt class="descname">datetime</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Drawing.datetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The modification time for the drawing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Contour.contour.models.Drawing.delete">
+<tt class="descclassname">Drawing.</tt><tt class="descname">delete</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#Drawing.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.Drawing.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the <a class="reference internal" href="#Contour.contour.models.Drawing" title="Contour.contour.models.Drawing"><tt class="xref py py-class docutils literal"><span class="pre">Drawing</span></tt></a> object along with its associated files.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.distance">
+<tt class="descclassname">Drawing.</tt><tt class="descname">distance</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Drawing.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The distance of between the drawing and the original (edge) image.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.drawing">
+<tt class="descclassname">Drawing.</tt><tt class="descname">drawing</tt><a class="headerlink" href="#Contour.contour.models.Drawing.drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">django.db.models.ImageField</span></tt> to the drawing on the filesystem.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Contour.contour.models.Drawing.get_next_by_datetime">
+<tt class="descclassname">Drawing.</tt><tt class="descname">get_next_by_datetime</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#Contour.contour.models.Drawing.get_next_by_datetime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Contour.contour.models.Drawing.get_previous_by_datetime">
+<tt class="descclassname">Drawing.</tt><tt class="descname">get_previous_by_datetime</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#Contour.contour.models.Drawing.get_previous_by_datetime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.image">
+<tt class="descclassname">Drawing.</tt><tt class="descname">image</tt><a class="headerlink" href="#Contour.contour.models.Drawing.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference to the <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">Image</span></tt></a> object which is the template for the drawing.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.objects">
+<tt class="descclassname">Drawing.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x3144050&gt;</em><a class="headerlink" href="#Contour.contour.models.Drawing.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.player">
+<tt class="descclassname">Drawing.</tt><tt class="descname">player</tt><a class="headerlink" href="#Contour.contour.models.Drawing.player" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference to the <a class="reference internal" href="#Contour.contour.models.Player" title="Contour.contour.models.Player"><tt class="xref py py-class docutils literal"><span class="pre">Player</span></tt></a> object who was drawn the drawing.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.score">
+<tt class="descclassname">Drawing.</tt><tt class="descname">score</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Drawing.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>The attained score for the drawing.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.track_session">
+<tt class="descclassname">Drawing.</tt><tt class="descname">track_session</tt><a class="headerlink" href="#Contour.contour.models.Drawing.track_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference to the <a class="reference internal" href="#Contour.contour.models.TrackSession" title="Contour.contour.models.TrackSession"><tt class="xref py py-class docutils literal"><span class="pre">TrackSession</span></tt></a> (optional).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Drawing.track_session_index">
+<tt class="descclassname">Drawing.</tt><tt class="descname">track_session_index</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Drawing.track_session_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of the drawing inside a <a class="reference internal" href="#Contour.contour.models.TrackSession" title="Contour.contour.models.TrackSession"><tt class="xref py py-class docutils literal"><span class="pre">TrackSession</span></tt></a>..</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.models.Image">
+<em class="property">class </em><tt class="descclassname">Contour.contour.models.</tt><tt class="descname">Image</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#Image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.Image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Stores a single image which serves as a template for <a class="reference internal" href="#Contour.contour.models.Drawing" title="Contour.contour.models.Drawing"><tt class="xref py py-class docutils literal"><span class="pre">Drawing</span></tt></a> objects .</p>
+<dl class="exception">
+<dt id="Contour.contour.models.Image.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#Contour.contour.models.Image.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Contour.contour.models.Image.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Image.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#Contour.contour.models.Image.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.author">
+<tt class="descclassname">Image.</tt><tt class="descname">author</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Image.author" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional author of the image (e.g. Pablo Picasso).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.canny_high_threshold">
+<tt class="descclassname">Image.</tt><tt class="descname">canny_high_threshold</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Image.canny_high_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>The high threshold for the Canny edge detection.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.canny_low_threshold">
+<tt class="descclassname">Image.</tt><tt class="descname">canny_low_threshold</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Image.canny_low_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>The low threshold for the Canny edge detection.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.canny_sigma">
+<tt class="descclassname">Image.</tt><tt class="descname">canny_sigma</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Image.canny_sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sigma value for the Gaussian blur which is performed before the Canny edge detection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Contour.contour.models.Image.delete">
+<tt class="descclassname">Image.</tt><tt class="descname">delete</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#Image.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.Image.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">Image</span></tt></a> object along with its associated files.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.dilated_edge_image">
+<tt class="descclassname">Image.</tt><tt class="descname">dilated_edge_image</tt><a class="headerlink" href="#Contour.contour.models.Image.dilated_edge_image" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">django.db.models.ImageField</span></tt> to the dilated edge image on the filesystem. The dilated edge image is used to assess the score of a drawing.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.drawing_set">
+<tt class="descclassname">Image.</tt><tt class="descname">drawing_set</tt><a class="headerlink" href="#Contour.contour.models.Image.drawing_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.edge_image">
+<tt class="descclassname">Image.</tt><tt class="descname">edge_image</tt><a class="headerlink" href="#Contour.contour.models.Image.edge_image" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">django.db.models.ImageField</span></tt> to the edge image on the filesystem. The edge image is calculated automatically.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.image">
+<tt class="descclassname">Image.</tt><tt class="descname">image</tt><a class="headerlink" href="#Contour.contour.models.Image.image" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">django.db.models.ImageField</span></tt> to the image on the filesystem.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.max_distance">
+<tt class="descclassname">Image.</tt><tt class="descname">max_distance</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Image.max_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a value which is used for the score calculation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.objects">
+<tt class="descclassname">Image.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x313e490&gt;</em><a class="headerlink" href="#Contour.contour.models.Image.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.title">
+<tt class="descclassname">Image.</tt><tt class="descname">title</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Image.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>The title of the image.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.track_set">
+<tt class="descclassname">Image.</tt><tt class="descname">track_set</tt><a class="headerlink" href="#Contour.contour.models.Image.track_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.trackimage_set">
+<tt class="descclassname">Image.</tt><tt class="descname">trackimage_set</tt><a class="headerlink" href="#Contour.contour.models.Image.trackimage_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Image.url">
+<tt class="descclassname">Image.</tt><tt class="descname">url</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Image.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional link to additional information.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.models.Player">
+<em class="property">class </em><tt class="descclassname">Contour.contour.models.</tt><tt class="descname">Player</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#Player"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Stores a player which can be associated to <a class="reference internal" href="#Contour.contour.models.TrackSession" title="Contour.contour.models.TrackSession"><tt class="xref py py-class docutils literal"><span class="pre">TrackSession</span></tt></a> and <a class="reference internal" href="#Contour.contour.models.Drawing" title="Contour.contour.models.Drawing"><tt class="xref py py-class docutils literal"><span class="pre">Drawing</span></tt></a> objects.</p>
+<dl class="exception">
+<dt id="Contour.contour.models.Player.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#Contour.contour.models.Player.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Contour.contour.models.Player.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Player.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#Contour.contour.models.Player.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Player.drawing_set">
+<tt class="descclassname">Player.</tt><tt class="descname">drawing_set</tt><a class="headerlink" href="#Contour.contour.models.Player.drawing_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Player.name">
+<tt class="descclassname">Player.</tt><tt class="descname">name</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.Player.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the player.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Player.objects">
+<tt class="descclassname">Player.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x313f190&gt;</em><a class="headerlink" href="#Contour.contour.models.Player.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Player.tracksession_set">
+<tt class="descclassname">Player.</tt><tt class="descname">tracksession_set</tt><a class="headerlink" href="#Contour.contour.models.Player.tracksession_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.models.Track">
+<em class="property">class </em><tt class="descclassname">Contour.contour.models.</tt><tt class="descname">Track</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#Track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.Track" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Stores a track which is a set of <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">Image</span></tt></a> objects  supposed to be drawn in succession.</p>
+<dl class="exception">
+<dt id="Contour.contour.models.Track.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#Contour.contour.models.Track.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Contour.contour.models.Track.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">Track.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#Contour.contour.models.Track.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Track.images">
+<tt class="descclassname">Track.</tt><tt class="descname">images</tt><a class="headerlink" href="#Contour.contour.models.Track.images" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Track.objects">
+<tt class="descclassname">Track.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x313ea10&gt;</em><a class="headerlink" href="#Contour.contour.models.Track.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Track.trackimage_set">
+<tt class="descclassname">Track.</tt><tt class="descname">trackimage_set</tt><a class="headerlink" href="#Contour.contour.models.Track.trackimage_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.Track.tracksession_set">
+<tt class="descclassname">Track.</tt><tt class="descname">tracksession_set</tt><a class="headerlink" href="#Contour.contour.models.Track.tracksession_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.models.TrackImage">
+<em class="property">class </em><tt class="descclassname">Contour.contour.models.</tt><tt class="descname">TrackImage</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#TrackImage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.TrackImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Stores a many-to-many (n-to-n) relation between <a class="reference internal" href="#Contour.contour.models.Track" title="Contour.contour.models.Track"><tt class="xref py py-class docutils literal"><span class="pre">Track</span></tt></a> objects  and <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">Image</span></tt></a> objects.</p>
+<dl class="exception">
+<dt id="Contour.contour.models.TrackImage.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#Contour.contour.models.TrackImage.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Contour.contour.models.TrackImage.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">TrackImage.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#Contour.contour.models.TrackImage.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackImage.image">
+<tt class="descclassname">TrackImage.</tt><tt class="descname">image</tt><a class="headerlink" href="#Contour.contour.models.TrackImage.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference to the <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">Image</span></tt></a> object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackImage.objects">
+<tt class="descclassname">TrackImage.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x313eed0&gt;</em><a class="headerlink" href="#Contour.contour.models.TrackImage.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackImage.order">
+<tt class="descclassname">TrackImage.</tt><tt class="descname">order</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.TrackImage.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of a <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">Image</span></tt></a> object inside a <a class="reference internal" href="#Contour.contour.models.Track" title="Contour.contour.models.Track"><tt class="xref py py-class docutils literal"><span class="pre">Track</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackImage.ordering">
+<tt class="descclassname">TrackImage.</tt><tt class="descname">ordering</tt><em class="property"> = ['order']</em><a class="headerlink" href="#Contour.contour.models.TrackImage.ordering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackImage.track">
+<tt class="descclassname">TrackImage.</tt><tt class="descname">track</tt><a class="headerlink" href="#Contour.contour.models.TrackImage.track" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference to the <a class="reference internal" href="#Contour.contour.models.Track" title="Contour.contour.models.Track"><tt class="xref py py-class docutils literal"><span class="pre">Track</span></tt></a> object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Contour.contour.models.TrackSession">
+<em class="property">class </em><tt class="descclassname">Contour.contour.models.</tt><tt class="descname">TrackSession</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/models.html#TrackSession"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.models.TrackSession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Stores a track sesssion which stores the specific track session of a player.</p>
+<dl class="exception">
+<dt id="Contour.contour.models.TrackSession.DoesNotExist">
+<em class="property">exception </em><tt class="descname">DoesNotExist</tt><a class="headerlink" href="#Contour.contour.models.TrackSession.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></tt></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Contour.contour.models.TrackSession.MultipleObjectsReturned">
+<em class="property">exception </em><tt class="descclassname">TrackSession.</tt><tt class="descname">MultipleObjectsReturned</tt><a class="headerlink" href="#Contour.contour.models.TrackSession.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackSession.datetime">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">datetime</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.TrackSession.datetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The creation time of the track session.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackSession.drawing_set">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">drawing_set</tt><a class="headerlink" href="#Contour.contour.models.TrackSession.drawing_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Contour.contour.models.TrackSession.get_next_by_datetime">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">get_next_by_datetime</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#Contour.contour.models.TrackSession.get_next_by_datetime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Contour.contour.models.TrackSession.get_previous_by_datetime">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">get_previous_by_datetime</tt><big>(</big><em>*moreargs</em>, <em>**morekwargs</em><big>)</big><a class="headerlink" href="#Contour.contour.models.TrackSession.get_previous_by_datetime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackSession.objects">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">objects</tt><em class="property"> = &lt;django.db.models.manager.Manager object at 0x313f850&gt;</em><a class="headerlink" href="#Contour.contour.models.TrackSession.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackSession.player">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">player</tt><a class="headerlink" href="#Contour.contour.models.TrackSession.player" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference to a <a class="reference internal" href="#Contour.contour.models.Player" title="Contour.contour.models.Player"><tt class="xref py py-class docutils literal"><span class="pre">Player</span></tt></a> object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackSession.score">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">score</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.TrackSession.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>The attained score.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackSession.session_key">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">session_key</tt><em class="property"> = None</em><a class="headerlink" href="#Contour.contour.models.TrackSession.session_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>The associated session key of the user associated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Contour.contour.models.TrackSession.track">
+<tt class="descclassname">TrackSession.</tt><tt class="descname">track</tt><a class="headerlink" href="#Contour.contour.models.TrackSession.track" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference to a <a class="reference internal" href="#Contour.contour.models.Track" title="Contour.contour.models.Track"><tt class="xref py py-class docutils literal"><span class="pre">Track</span></tt></a> object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Contour.contour.set_metrics">
+<span id="set-metrics-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">set_metrics</span></tt> Module<a class="headerlink" href="#module-Contour.contour.set_metrics" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="Contour.contour.set_metrics.binary_find_boundaries">
+<tt class="descclassname">Contour.contour.set_metrics.</tt><tt class="descname">binary_find_boundaries</tt><big>(</big><em>image</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/set_metrics.html#binary_find_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.set_metrics.binary_find_boundaries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.set_metrics.hausdorff_distance">
+<tt class="descclassname">Contour.contour.set_metrics.</tt><tt class="descname">hausdorff_distance</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/set_metrics.html#hausdorff_distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.set_metrics.hausdorff_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Hausdorff distance [1] between two sets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<em>ndarray.</em>) &#8211; Array containing the coordinates of <tt class="docutils literal"><span class="pre">N</span></tt> points in an <tt class="docutils literal"><span class="pre">M</span></tt> dimensional space.</li>
+<li><strong>b</strong> (<em>ndarray.</em>) &#8211; Array containing the coordinates of <tt class="docutils literal"><span class="pre">N</span></tt> points in an <tt class="docutils literal"><span class="pre">M</span></tt> dimensional space.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">float &#8211; The Hausdorff distance between the sets represented by <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> using Euclidian distance to calculate the distance between members of the sets.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Hausdorff_distance">http://en.wikipedia.org/wiki/Hausdorff_distance</a></td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.set_metrics.hausdorff_distance_region">
+<tt class="descclassname">Contour.contour.set_metrics.</tt><tt class="descname">hausdorff_distance_region</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/set_metrics.html#hausdorff_distance_region"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.set_metrics.hausdorff_distance_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Hausdorff distance [2] between two binary images.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<em>ndarray, dtype=bool.</em>) &#8211; Array where <tt class="docutils literal"><span class="pre">True</span></tt> represents a point that is included in a set of points. Both arrays must have the same shape.</li>
+<li><strong>b</strong> (<em>ndarray, dtype=bool.</em>) &#8211; Array where <tt class="docutils literal"><span class="pre">True</span></tt> represents a point that is included in a set of points. Both arrays must have the same shape.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">float &#8211; The Hausdorff distance between the sets represented by <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> using Euclidian distance to calculate the distance between members of the sets.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Hausdorff_distance">http://en.wikipedia.org/wiki/Hausdorff_distance</a></td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Contour.contour.urls">
+<span id="urls-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">urls</span></tt> Module<a class="headerlink" href="#module-Contour.contour.urls" title="Permalink to this headline">¶</a></h2>
+<p>The urls module maps URL patterns of requested URLs to Django views.</p>
+</div>
+<div class="section" id="module-Contour.contour.util">
+<span id="util-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">util</span></tt> Module<a class="headerlink" href="#module-Contour.contour.util" title="Permalink to this headline">¶</a></h2>
+<p>A module containing helper functions.</p>
+<dl class="function">
+<dt id="Contour.contour.util.slugify">
+<tt class="descclassname">Contour.contour.util.</tt><tt class="descname">slugify</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/util.html#slugify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.util.slugify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes string, converts to lowercase, removes non-alpha characters,
+and converts spaces to hyphens.</p>
+<p>From Django&#8217;s &#8220;django/template/defaultfilters.py&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>string.</em>) &#8211; The unsanitized string.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string &#8211; The sanitized string.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-Contour.contour.views">
+<span id="views-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">views</span></tt> Module<a class="headerlink" href="#module-Contour.contour.views" title="Permalink to this headline">¶</a></h2>
+<p>Describes the views used in Contour.</p>
+<dl class="function">
+<dt id="Contour.contour.views.canvas">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">canvas</tt><big>(</big><em>request</em>, <em>id=None</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#canvas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.canvas" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the view function for a single drawing canvas. It is called for the file upload and Flickr game modes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</li>
+<li><strong>id</strong> (<em>int.</em>) &#8211; The id of the requested <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">models.Image</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpResponse</span></tt> &#8211; The rendered template as response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.check_session">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">check_session</tt><big>(</big><em>request</em>, <em>view_name=None</em>, <em>id=None</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#check_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.check_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the requested URL is in canon with the currently running session. The user will be asked if he wants to discad his session if there&#8217;s a discrepancy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</li>
+<li><strong>view_name</strong> (<em>string.</em>) &#8211; The name of the requested view to which the session should be associated.</li>
+<li><strong>id</strong> (<em>int.</em>) &#8211; The id of the requested <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">models.Image</span></tt></a> or <a class="reference internal" href="#Contour.contour.models.Track" title="Contour.contour.models.Track"><tt class="xref py py-class docutils literal"><span class="pre">models.Track</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpResponse</span></tt> &#8211; The rendered template as response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.clear_session">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">clear_session</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#clear_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.clear_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears all varibles of the user session.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user session.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.create_session">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">create_session</tt><big>(</big><em>request</em>, <em>view_name</em>, <em>id</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#create_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.create_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a user session.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</li>
+<li><strong>view_name</strong> (<em>string.</em>) &#8211; The name of the view to which the session should be associated.</li>
+<li><strong>id</strong> (<em>int.</em>) &#8211; The id of the <a class="reference internal" href="#Contour.contour.models.Image" title="Contour.contour.models.Image"><tt class="xref py py-class docutils literal"><span class="pre">models.Image</span></tt></a> or <a class="reference internal" href="#Contour.contour.models.Track" title="Contour.contour.models.Track"><tt class="xref py py-class docutils literal"><span class="pre">models.Track</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.destroy_session">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">destroy_session</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#destroy_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.destroy_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroys a currently running user session if such a request has been sent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bool &#8211; <cite>True</cite> if the session was cleared, otherwise <cite>None</cite>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.drawing">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">drawing</tt><big>(</big><em>request</em>, <em>id</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#drawing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the view function to view the score summary of single drawings.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</li>
+<li><strong>id</strong> (<em>int.</em>) &#8211; The id of the requested <a class="reference internal" href="#Contour.contour.models.Drawing" title="Contour.contour.models.Drawing"><tt class="xref py py-class docutils literal"><span class="pre">models.Drawing</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpResponse</span></tt> &#8211; The rendered template as response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.get_player">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">get_player</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#get_player"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.get_player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#Contour.contour.models.Player" title="Contour.contour.models.Player"><tt class="xref py py-class docutils literal"><span class="pre">models.Player</span></tt></a> object. A new player will be created if the requested player doesn&#8217;t exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>view_name</strong> (<em>string.</em>) &#8211; The name of the requested player.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">models.Player</span></tt> &#8211; The requested player.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.handle_finished_drawing">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">handle_finished_drawing</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#handle_finished_drawing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.handle_finished_drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called as soon as the user finishes his drawing. It saves and associates his drawing to the running track session. It also assesses the score of the drawing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">models.Drawing</span></tt> &#8211; The created drawing object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.handle_flickr_search">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">handle_flickr_search</tt><big>(</big><em>request</em>, <em>form</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#handle_flickr_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.handle_flickr_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called as soon as the user submits a Flickr search query. It saves the found image on the filesystem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">models.Image</span></tt> &#8211; The created image object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.handle_uploaded_file">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">handle_uploaded_file</tt><big>(</big><em>request</em>, <em>form</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#handle_uploaded_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.handle_uploaded_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is called as soon as the user uploads a file. It saves his image on the filesystem.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">models.Image</span></tt> &#8211; The created image object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.index">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">index</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the view function for the home page.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpResponse</span></tt> &#8211; The rendered template as response.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.process_image">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">process_image</tt><big>(</big><em>request</em>, <em>image</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#process_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.process_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an edge image and calculates the values needed for the score calculation if necessary. This function is called as soon as an image is requested.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</li>
+<li><strong>image</strong> (<tt class="xref py py-class docutils literal"><span class="pre">models.Image</span></tt>.) &#8211; The image to be processed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.save_session">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">save_session</tt><big>(</big><em>request</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#save_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.save_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a track session. This function is called as soon as the player chooses to save his scores.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.session">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">session</tt><big>(</big><em>request</em>, <em>id</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.session" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the view function to view the score summary of track sessions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</li>
+<li><strong>id</strong> (<em>int.</em>) &#8211; The id of the requested <a class="reference internal" href="#Contour.contour.models.TrackSession" title="Contour.contour.models.TrackSession"><tt class="xref py py-class docutils literal"><span class="pre">models.TrackSession</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpResponse</span></tt> &#8211; The rendered template as response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Contour.contour.views.track">
+<tt class="descclassname">Contour.contour.views.</tt><tt class="descname">track</tt><big>(</big><em>request</em>, <em>id</em><big>)</big><a class="reference internal" href="_modules/Contour/contour/views.html#track"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Contour.contour.views.track" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the view function for track sessions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpRequest</span></tt>.) &#8211; The request object containing the user request.</li>
+<li><strong>id</strong> (<em>int.</em>) &#8211; The id of the requested <a class="reference internal" href="#Contour.contour.models.Track" title="Contour.contour.models.Track"><tt class="xref py py-class docutils literal"><span class="pre">models.Track</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">django.http.HttpResponse</span></tt> &#8211; The rendered template as response.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contour.contour.management.html">management Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Contour.contour.management.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Contour.contour.management.commands.html">commands Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Contour.contour.management.commands.html#module-Contour.contour.management.commands.cleanup"><tt class="docutils literal"><span class="pre">cleanup</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Contour.contour.management.commands.html#module-Contour.contour.management.commands.delete_edge_images"><tt class="docutils literal"><span class="pre">delete_edge_images</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Contour.contour.management.commands.html#module-Contour.contour.management.commands.delete_user_content"><tt class="docutils literal"><span class="pre">delete_user_content</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">contour Package</a><ul>
+<li><a class="reference internal" href="#module-Contour.contour.admin"><tt class="docutils literal"><span class="pre">admin</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-Contour.contour.forms"><tt class="docutils literal"><span class="pre">forms</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-Contour.contour.models"><tt class="docutils literal"><span class="pre">models</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-Contour.contour.set_metrics"><tt class="docutils literal"><span class="pre">set_metrics</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-Contour.contour.urls"><tt class="docutils literal"><span class="pre">urls</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-Contour.contour.util"><tt class="docutils literal"><span class="pre">util</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-Contour.contour.views"><tt class="docutils literal"><span class="pre">views</span></tt> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Contour.html"
+                        title="previous chapter">Contour Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Contour.contour.management.html"
+                        title="next chapter">management Package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/Contour.contour.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Contour.contour.management.html" title="management Package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Contour.html" title="Contour Package"
+             >previous</a> |</li>
+        <li><a href="index.html">Contour 1.0.1 documentation</a> &raquo;</li>
+          <li><a href="Contour.html" >Contour Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Hiroyuki Sakai.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

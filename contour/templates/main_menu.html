@@ -191,13 +191,7 @@
                     As a first step, the edges of a given image are calculated using the <a href="http://en.wikipedia.org/wiki/Canny_edge_detector" target="_blank">Canny edge detection</a> algorithm. The resulting edge image is used as a template on the drawing canvas.
                 </p>
                 <p>
-                    The score of a drawing is assessed by calculating the <a href="http://en.wikipedia.org/wiki/Hausdorff_distance" target="_blank">Hausdorff distance</a> between the given edge image and the user drawing. Precisely, the score is given by the following equation:
-                </p>
-                <p>
-                    <em>score = (distance<sub>max</sub> - distance) ÷ distance_max × 100</em>
-                </p>
-                <p>
-                    Where <em>distance<sub>max</sub></em> is the Hausdorff distance between the given edge image and an "empty image".
+                    The score of a drawing is assessed by calculating a difference metric between the drawing and the dilated edge image.
                 </p>
                 <h3>Technical limitations</h3>
                 <p>

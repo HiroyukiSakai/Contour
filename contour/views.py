@@ -1,21 +1,25 @@
-'''
-    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+#   Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+#
+#   This file is part of Contour.
+#
+#   Contour is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   Contour is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Contour.  If not, see <http://www.gnu.org/licenses/>.
 
-    This file is part of Contour.
+"""Describes the views used in Contour.
 
-    Contour is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+.. moduleauthor:: Hiroyuki Sakai <hiroyuki.sakai@student.tuwien.ac.at>
 
-    Contour is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 import base64, os, pdb, urllib
 
@@ -24,7 +28,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 
 import flickrapi, numpy as np
-from scipy import misc
+from scipy import misc, ndimage
 from skimage import filter, io, transform
 
 import secret
@@ -32,16 +36,36 @@ from .. import settings
 from .forms import *
 from .models import *
 from .set_metrics import *
-from .util import _slugify
+from .util import slugify
+
+
+OVERLAPPING_PENALTY_FACTOR = 1.
+SUPERFLUOUS_PENALTY_FACTOR = .1
 
 
 def create_session(request, view_name, id):
+    """Creates a user session.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param view_name: The name of the view to which the session should be associated.
+    :type view_name: string.
+    :param id: The id of the :class:`.models.Image` or :class:`.models.Track`.
+    :type id: int.
+
+    """
     if not request.session.get('is_playing'):
         request.session['is_playing'] = True
         request.session['view_name'] = view_name
         request.session['id'] = id
 
 def clear_session(request):
+    """Clears all varibles of the user session.
+
+    :param request: The request object containing the user session.
+    :type request: :class:`django.http.HttpRequest`.
+
+    """
     request.session['is_playing'] = False
     request.session['view_name'] = None
     request.session['id'] = None
@@ -51,6 +75,13 @@ def clear_session(request):
     request.session['drawing_id'] = None
 
 def destroy_session(request):
+    """Destroys a currently running user session if such a request has been sent.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :returns: bool -- `True` if the session was cleared, otherwise `None`.
+
+    """
     if request.session.get('is_playing') and request.method == 'POST':
         form = DiscardSessionForm(request.POST)
 
@@ -61,6 +92,17 @@ def destroy_session(request):
     return
 
 def check_session(request, view_name=None, id=None):
+    """Checks if the requested URL is in canon with the currently running session. The user will be asked if he wants to discad his session if there's a discrepancy.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param view_name: The name of the requested view to which the session should be associated.
+    :type view_name: string.
+    :param id: The id of the requested :class:`.models.Image` or :class:`.models.Track`.
+    :type id: int.
+    :returns: :class:`django.http.HttpResponse` -- The rendered template as response.
+
+    """
     if request.session.get('is_playing') and (view_name != request.session.get('view_name') or id != request.session.get('id')):
         return render(request, 'confirm_discard.html', {
             'form': DiscardSessionForm(),
@@ -69,6 +111,13 @@ def check_session(request, view_name=None, id=None):
         });
 
 def get_player(name):
+    """Returns a :class:`.models.Player` object. A new player will be created if the requested player doesn't exist.
+
+    :param view_name: The name of the requested player.
+    :type view_name: string.
+    :returns: :class:`models.Player` -- The requested player.
+
+    """
     try:
         player = Player.objects.get(name=name)
     except Player.DoesNotExist:
@@ -78,6 +127,12 @@ def get_player(name):
     return player
 
 def save_session(request):
+    """Saves a track session. This function is called as soon as the player chooses to save his scores.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+
+    """
     if request.session.get('is_playing') and request.method == 'POST':
         form = SaveSessionForm(request.POST)
 
@@ -104,6 +159,14 @@ def save_session(request):
 
 
 def process_image(request, image):
+    """Creates an edge image and calculates the values needed for the score calculation if necessary. This function is called as soon as an image is requested.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param image: The image to be processed.
+    :type image: :class:`models.Image`.
+
+    """
     # detect edges
     if not image.edge_image:
         greyscale_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.image.name), as_grey=True)
@@ -120,25 +183,35 @@ def process_image(request, image):
         # save edge image
         temp_filename = '/tmp/' + request.session.session_key + '.png'
         io.imsave(temp_filename, ~edges * 1.)
-        image.edge_image.save(_slugify(os.path.splitext(os.path.basename(image.image.name))[0]) + '.png', File(open(temp_filename)))
+        image.edge_image.save(slugify(os.path.splitext(os.path.basename(image.image.name))[0]) + '.png', File(open(temp_filename)))
+
+        # save dilated edge image
+        io.imsave(temp_filename, ~ndimage.binary_dilation(edges, iterations=2) * 1.)
+        image.dilated_edge_image.save(slugify(os.path.splitext(os.path.basename(image.image.name))[0]) + '.png', File(open(temp_filename)))
         os.remove(temp_filename)
 
-    # save maximum hausdorff distance (needed for score calculation)
-    if not image.max_hausdorff_distance:
-        zeros = np.zeros(image.edge_image.height * image.edge_image.width).reshape((image.edge_image.height, image.edge_image.width))
-        edge_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.edge_image.name), as_grey=True)
+    # save maximum distance (needed for score calculation)
+    if not image.max_distance:
+        ones = np.ones(image.edge_image.height * image.edge_image.width).reshape((image.edge_image.height, image.edge_image.width))
 
-        zeros = zeros.astype(np.float64)
-        edge_image = edge_image.astype(np.float64)
+        dilated_edge_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.dilated_edge_image.name), as_grey=True)
+        dilated_edge_image = dilated_edge_image.astype(np.float64)
 
-        if edge_image.max() > 1.:
-            edge_image /= 255.
+        if dilated_edge_image.max() > 1.:
+            dilated_edge_image /= 255.
 
-        image.max_hausdorff_distance = hausdorff_distance(zeros, 1. - edge_image)
+        image.max_distance = np.sum(np.absolute(ones - dilated_edge_image))
         image.save()
 
 
 def handle_finished_drawing(request):
+    """This function is called as soon as the user finishes his drawing. It saves and associates his drawing to the running track session. It also assesses the score of the drawing.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :returns: :class:`models.Drawing` -- The created drawing object.
+
+    """
     if request.session.get('is_playing'):
         if request.method == 'POST':
             form = FinishDrawingForm(request.POST)
@@ -153,28 +226,28 @@ def handle_finished_drawing(request):
 
                 image = Image.objects.get(id=request.session.get('image_id'))
 
-                # calculate Hausdorff distance
+                # calculate distance
                 greyscale_drawing = io.imread(temp_filename, as_grey=True)
                 greyscale_drawing = misc.imresize(greyscale_drawing, (image.edge_image.height, image.edge_image.width), mode='F')
-                edge_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.edge_image.name), as_grey=True)
+                dilated_edge_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.dilated_edge_image.name), as_grey=True)
 
                 greyscale_drawing = greyscale_drawing.astype(np.float64)
-                edge_image = edge_image.astype(np.float64)
+                dilated_edge_image = dilated_edge_image.astype(np.float64)
 
                 # correct ranges of images if necessary
                 if greyscale_drawing.max() > 1.:
                     greyscale_drawing /= 255.
-                if edge_image.max() > 1.:
-                    edge_image /= 255.
+                if dilated_edge_image.max() > 1.:
+                    dilated_edge_image /= 255.
 
-                #io.imsave('/tmp/A.png', 1. - greyscale_drawing)
-                #io.imsave('/tmp/B.png', 1. - edge_image)
-
-                distance = hausdorff_distance(1. - greyscale_drawing, 1. - edge_image)
-                score = (image.max_hausdorff_distance - distance) / image.max_hausdorff_distance * 100
+                # number of pixels in the edge image which are not covered
+                distance = np.sum(np.clip(greyscale_drawing - dilated_edge_image, 0., 1.)) * OVERLAPPING_PENALTY_FACTOR;
+                # number of pixels in the drawing which are misplaced
+                distance += np.sum(np.clip(dilated_edge_image - greyscale_drawing, 0., 1.)) * SUPERFLUOUS_PENALTY_FACTOR;
+                score = max((image.max_distance - distance) / image.max_distance * 100, 0.)
 
                 # save drawing
-                drawing = Drawing(image=image, hausdorff_distance=distance, score=score)
+                drawing = Drawing(image=image, distance=distance, score=score)
                 drawing.drawing.save(request.session.session_key + '.png', File(open(temp_filename)))
                 drawing.save()
 
@@ -185,6 +258,13 @@ def handle_finished_drawing(request):
     return
 
 def handle_uploaded_file(request, form):
+    """This function is called as soon as the user uploads a file. It saves his image on the filesystem.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :returns: :class:`models.Image` -- The created image object.
+
+    """
     file = request.FILES['file']
     sigma = form.cleaned_data['sigma']
 
@@ -194,9 +274,9 @@ def handle_uploaded_file(request, form):
         for chunk in file.chunks():
             destination.write(chunk)
 
-    image = Image(title=_slugify(file.name), canny_sigma=sigma)
+    image = Image(title=slugify(file.name), canny_sigma=sigma)
     split = os.path.splitext(os.path.basename(file.name))
-    image.image.save(_slugify(split[0]) + split[1], File(open(temp_filename)))
+    image.image.save(slugify(split[0]) + split[1], File(open(temp_filename)))
     image.save()
 
     os.remove(temp_filename)
@@ -204,6 +284,13 @@ def handle_uploaded_file(request, form):
     return image
 
 def handle_flickr_search(request, form):
+    """This function is called as soon as the user submits a Flickr search query. It saves the found image on the filesystem.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :returns: :class:`models.Image` -- The created image object.
+
+    """
     query = form.cleaned_data['query']
     sigma = form.cleaned_data['sigma']
 
@@ -213,7 +300,7 @@ def handle_flickr_search(request, form):
         temp_filename = '/tmp/' + request.session.session_key + '.jpg'
         urllib.urlretrieve('http://farm' + photo.get('farm') + '.staticflickr.com/' + photo.get('server') + '/' + photo.get('id') + '_' + photo.get('secret') + '.jpg', temp_filename)
 
-        title = _slugify(str(photo.get('title')))
+        title = slugify(str(photo.get('title')))
         image = Image(title=title, url='http://www.flickr.com/photos/' + photo.get('owner') + '/' + photo.get('id'), canny_sigma=sigma)
         image.image.save(title[:64] + '.jpg', File(open(temp_filename)))
         image.save()
@@ -224,6 +311,13 @@ def handle_flickr_search(request, form):
 
 
 def index(request):
+    """This is the view function for the home page.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :returns: :class:`django.http.HttpResponse` -- The rendered template as response.
+
+    """
     clear_canvas = destroy_session(request)
     save_session(request)
 
@@ -251,6 +345,15 @@ def index(request):
     })
 
 def canvas(request, id=None):
+    """This is the view function for a single drawing canvas. It is called for the file upload and Flickr game modes.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param id: The id of the requested :class:`.models.Image`.
+    :type id: int.
+    :returns: :class:`django.http.HttpResponse` -- The rendered template as response.
+
+    """
     view_name = 'Contour.contour.views.canvas'
     if id:
         id = long(id)
@@ -319,6 +422,15 @@ def canvas(request, id=None):
     })
 
 def track(request, id):
+    """This is the view function for track sessions.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param id: The id of the requested :class:`.models.Track`.
+    :type id: int.
+    :returns: :class:`django.http.HttpResponse` -- The rendered template as response.
+
+    """
     view_name = 'Contour.contour.views.track'
     if id:
         id = long(id)
@@ -384,6 +496,15 @@ def track(request, id):
     })
 
 def drawing(request, id):
+    """This is the view function to view the score summary of single drawings.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param id: The id of the requested :class:`.models.Drawing`.
+    :type id: int.
+    :returns: :class:`django.http.HttpResponse` -- The rendered template as response.
+
+    """
     if id:
         id = long(id)
 
@@ -397,6 +518,15 @@ def drawing(request, id):
     })
 
 def session(request, id):
+    """This is the view function to view the score summary of track sessions.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param id: The id of the requested :class:`.models.TrackSession`.
+    :type id: int.
+    :returns: :class:`django.http.HttpResponse` -- The rendered template as response.
+
+    """
     if id:
         id = long(id)
 

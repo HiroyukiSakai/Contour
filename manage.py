@@ -1,4 +1,9 @@
 #!/usr/bin/env python2.7
+
+"""Django's command-line utility for administrative tasks.
+
+"""
+
 from django.core.management import execute_manager
 import imp
 try:

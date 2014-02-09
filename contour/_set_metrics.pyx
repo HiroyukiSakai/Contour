@@ -14,8 +14,15 @@ MAX_FLOAT64 = np.finfo(np.float64).max
 
 def hausdorff_distance_onesided(cnp.float64_t[:, ::1] points_sup,
                                 cnp.float64_t[:, ::1] points_inf):
-    """
-    Compute the one-sided Haussdorff distance between two sets of points.
+    """A Cython function which computes the one-sided Hausdorff distance between two sets of points.
+
+    Args:
+        points_sup (cnp.float64_t[:, ::1])
+        points_inf (cnp.float64_t[:, ::1])
+
+    Returns:
+        float. The one-sided Hausdorff distance between the supplied two sets of points.
+
     """
     assert points_sup.shape[1] == points_inf.shape[1]
 
