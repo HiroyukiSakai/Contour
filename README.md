@@ -10,11 +10,12 @@ Client-side:
 * [HTML5 Boilerplate](http://html5boilerplate.com) v4.3.0
 * [Bootstrap](http://getbootstrap.com) v3.0.3
 * [Modernizr](http://modernizr.com) v2.6.2
-* [Respond](https://github.com/scottjehl/Respond) v1.1.0
+* [Respond.js](https://github.com/scottjehl/Respond) v1.1.0
 * [jQuery](http://jquery.com) v2.1.0
 * [Underscore.js](http://underscorejs.org) v1.5.2
     * [Literally Canvas](http://literallycanvas.com) v0.3-rc4
 * [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/) v0.9.9
+* [Jasny Bootstrap](http://jasny.github.io/bootstrap/) v3.0.1-p7
 * [Slider for Bootstrap](http://www.eyecon.ro/bootstrap-slider/) v2.0.0
 
 Server-side:
