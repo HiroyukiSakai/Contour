@@ -234,15 +234,18 @@ def index(request):
 
     tracks = Track.objects.all()
 
-    highscore_tables = {}
+    track_highscores = {}
     for track in tracks:
-        highscore_tables[track.title] = TrackSession.objects.filter(player__isnull=False, track=track).order_by('-score')
+        track_highscores[track.id] = {
+            'title': track.title,
+            'highscores': TrackSession.objects.filter(player__isnull=False, track=track).order_by('-score'),
+        }
 
     return render(request, 'main_menu.html', {
         'upload_file_form': UploadFileForm(),
         'search_flickr_form': SearchFlickrForm(),
         'tracks': tracks,
-        'highscore_tables': highscore_tables,
+        'track_highscores': track_highscores,
         'single_drawing_highscores': Drawing.objects.filter(player__isnull=False, track_session__isnull=True),
         'clear_canvas': clear_canvas,
     })

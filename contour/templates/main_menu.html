@@ -103,14 +103,14 @@
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs">
-                {% for key, highscore_table in highscore_tables.items %}
-                    <li{% if forloop.first %} class="active"{% endif %}><a href="#{{ key|lower }}" data-toggle="tab">{{ key }}</a></li>
+                {% for key, track in track_highscores.items %}
+                    <li{% if forloop.first %} class="active"{% endif %}><a href="#track-{{ key }}" data-toggle="tab">{{ track.title }}</a></li>
                 {% endfor %}
-                    <li{% if not highscore_tables.items %} class="active"{% endif %}><a href="#single-drawings" data-toggle="tab">Single drawings</a></li>
+                    <li{% if not track_highscores.items %} class="active"{% endif %}><a href="#single-drawings" data-toggle="tab">Single drawings</a></li>
                 </ul>
                 <div class="tab-content">
-                {% for key, highscore_table in highscore_tables.items %}
-                    <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ key|lower }}">
+                {% for key, track in track_highscores.items %}
+                    <div class="tab-pane{% if forloop.first %} active{% endif %}" id="track-{{ key }}">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead>
@@ -122,12 +122,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for highscore_row in highscore_table %}
+                                {% for highscore in track.highscores %}
                                     <tr>
-                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ forloop.counter }}</a></td>
-                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ highscore_row.player.name }}</a></td>
-                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ highscore_row.datetime|date }} {{ highscore_row.datetime|time }}</a></td>
-                                        <td><a href="{% url Contour.contour.views.session highscore_row.id %}" target="_blank">{{ highscore_row.score|floatformat:2 }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.session highscore.id %}" target="_blank">{{ forloop.counter }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.session highscore.id %}" target="_blank">{{ highscore.player.name }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.session highscore.id %}" target="_blank">{{ highscore.datetime|date }} {{ highscore.datetime|time }}</a></td>
+                                        <td><a href="{% url Contour.contour.views.session highscore.id %}" target="_blank">{{ highscore.score|floatformat:2 }}</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                 {% endfor %}
-                    <div class="tab-pane{% if not highscore_tables.items %} active{% endif %}" id="single-drawings">
+                    <div class="tab-pane{% if not track_highscores.items %} active{% endif %}" id="single-drawings">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead>

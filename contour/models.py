@@ -21,6 +21,10 @@ from django.db import models
 
 
 class Image(models.Model):
+    """
+    Stores a single image which serves as a template for :model:`contour.Drawing` objects .
+
+    """
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, blank=True)
     url = models.URLField(blank=True)
@@ -35,6 +39,7 @@ class Image(models.Model):
         return self.title + ' (' + str(self.image) + ')'
 
     def delete(self, *args, **kwargs):
+        """Deletes the image along with the associated files."""
         image_storage, image_path = self.image.storage, self.image.path
         edge_image_storage, edge_image_path = self.edge_image.storage, self.edge_image.path
         # Delete the model before the file
@@ -44,6 +49,10 @@ class Image(models.Model):
         edge_image_storage.delete(edge_image_path)
 
 class Track(models.Model):
+    """
+    Stores a track which is a set of :model:`contour.Image` objects  supposed to be drawn in succession.
+
+    """
     title = models.CharField(max_length=255)
     description = models.TextField()
     images = models.ManyToManyField(Image, through='TrackImage')
@@ -52,6 +61,10 @@ class Track(models.Model):
         return self.title
 
 class TrackImage(models.Model):
+    """
+    Stores a many-to-many (n-to-n) relation between :model:`contour.Track` objects  and :model:`contour.Image` objects.
+
+    """
     track = models.ForeignKey(Track)
     image = models.ForeignKey(Image)
     order = models.IntegerField()
@@ -62,6 +75,10 @@ class TrackImage(models.Model):
         ordering = ('order',)
 
 class Player(models.Model):
+    """
+    Stores a player which can be associated to :model:`contour.TrackSession` objects and :model:`contour.Drawing` objects.
+
+    """
     name = models.CharField(max_length=255, unique=True)
 
     def __unicode__(self):
