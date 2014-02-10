@@ -300,6 +300,7 @@ h6,
 }
 
 .view-game #literally .toolbar-row-left {
+    display: none;
     overflow: hidden;
     width: 63px;
 }

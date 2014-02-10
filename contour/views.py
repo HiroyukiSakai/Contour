@@ -23,6 +23,8 @@
 
 import base64, os, pdb, urllib
 
+from PIL import Image as PImage
+
 from django.core.files import File
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
@@ -223,6 +225,10 @@ def handle_finished_drawing(request):
                 file = open(temp_filename, 'wb')
                 file.write(image_data)
                 file.close()
+
+                im = PImage.open(temp_filename)
+                im = im.convert("RGB")
+                im.save(temp_filename, "PNG")
 
                 image = Image.objects.get(id=request.session.get('image_id'))
 
