@@ -307,7 +307,7 @@ h6,
 
 .view-game #last-drawing-modal .score-image,
 .view-completed #last-drawing-modal .score-image {
-    width: 100%;
+    max-width: 100%;
 }
 
 .view-game .title-bar {
