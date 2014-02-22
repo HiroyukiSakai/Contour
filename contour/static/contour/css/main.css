@@ -305,6 +305,11 @@ h6,
     width: 63px;
 }
 
+.view-game #last-drawing-modal .score-image,
+.view-completed #last-drawing-modal .score-image {
+    width: 100%;
+}
+
 .view-game .title-bar {
     color: #333;
     font-size: 18px;

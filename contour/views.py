@@ -41,8 +41,8 @@ from .set_metrics import *
 from .util import slugify
 
 
-OVERLAPPING_PENALTY_FACTOR = 1.
-SUPERFLUOUS_PENALTY_FACTOR = .1
+MISSING_PIXELS_PENALTY_FACTOR = 1.
+SUPERFLUOUS_PIXELS_PENALTY_FACTOR = .1
 
 
 def create_session(request, view_name, id):
@@ -57,7 +57,6 @@ def create_session(request, view_name, id):
 
     """
     if not request.session.get('is_playing'):
-        request.session['new_session'] = True
         request.session['is_playing'] = True
         request.session['view_name'] = view_name
         request.session['id'] = id
@@ -69,7 +68,6 @@ def clear_session(request):
     :type request: :class:`django.http.HttpRequest`.
 
     """
-    request.session['new_session'] = False
     request.session['is_playing'] = False
     request.session['view_name'] = None
     request.session['id'] = None
@@ -77,6 +75,7 @@ def clear_session(request):
     request.session['image_index'] = None
     request.session['track_session_id'] = None
     request.session['drawing_id'] = None
+    request.session['last_drawing_id'] = None
 
 def destroy_session(request):
     """Destroys a currently running user session if such a request has been sent.
@@ -260,15 +259,30 @@ def handle_finished_drawing(request):
                 if dilated_edge_image.max() > 1.:
                     dilated_edge_image /= 255.
 
+                missing_pixels = np.clip(greyscale_drawing - dilated_edge_image, 0., 1.)
+                overlapping_pixels = np.clip((1. - greyscale_drawing) * (1. - dilated_edge_image), 0., 1.)
+                superfluous_pixels = np.clip(dilated_edge_image - greyscale_drawing, 0., 1.)
+
                 # number of pixels in the edge image which are not covered
-                distance = np.sum(np.clip(greyscale_drawing - dilated_edge_image, 0., 1.)) * OVERLAPPING_PENALTY_FACTOR;
+                distance = np.sum(missing_pixels) * MISSING_PIXELS_PENALTY_FACTOR;
                 # number of pixels in the drawing which are misplaced
-                distance += np.sum(np.clip(dilated_edge_image - greyscale_drawing, 0., 1.)) * SUPERFLUOUS_PENALTY_FACTOR;
+                distance += np.sum(superfluous_pixels) * SUPERFLUOUS_PIXELS_PENALTY_FACTOR;
                 score = max((image.max_distance - distance) / image.max_distance * 100, 0.)
 
                 # save drawing
                 drawing = Drawing(image=image, distance=distance, score=score)
                 drawing.drawing.save(request.session.session_key + '.png', File(open(temp_filename)))
+
+                # generate and save score image
+                score_image = np.zeros((image.edge_image.height, image.edge_image.width, 3), dtype=np.float64)
+                score_image[:, :, 0] += missing_pixels
+                score_image[:, :, 1] += missing_pixels
+                score_image[:, :, 2] += missing_pixels
+                score_image[:, :, 0] += superfluous_pixels
+                score_image[:, :, 1] += overlapping_pixels
+                io.imsave(temp_filename, score_image * 1.)
+                drawing.score_image.save(request.session.session_key + '_score.png', File(open(temp_filename)))
+
                 drawing.save()
 
                 # delete temporary file
@@ -466,28 +480,52 @@ def canvas(request, id=None):
 
     drawing = handle_finished_drawing(request)
     if drawing:
-        request.session['new_session'] = False
+        request.session['last_drawing_id'] = drawing.id
+        request.session['dont_show_welcome'] = True
         request.session['drawing_id'] = drawing.id
         request.session['image_index'] = request.session.get('image_index') + 1
         return HttpResponse(True)
 
 
+    last_drawing = None
+    if request.session.get('last_drawing_id'):
+        try:
+            last_drawing = Drawing.objects.get(id=request.session.get('last_drawing_id'))
+        except Drawing.DoesNotExist:
+            None
+
+
+    if request.method == 'POST':
+        form = RetryDrawingForm(request.POST)
+
+        if form.is_valid() and form.cleaned_data['retry_drawing']:
+            request.session['last_drawing_id'] = None
+            request.session['image_index'] = request.session.get('image_index') - 1
+
+            last_drawing.delete()
+            last_drawing = None
+
+
     if request.session.get('image_index'):
         return render(request, 'completed.html', {
+            'retry_drawing_form': RetryDrawingForm(),
             'save_session_form': SaveSessionForm(),
             'discard_session_form': DiscardSessionForm(),
             'drawing': Drawing.objects.get(id=request.session.get('drawing_id')),
+            'last_drawing': last_drawing,
         })
 
     process_image(request, image)
 
 
     return render(request, 'game.html', {
-        'form': FinishDrawingForm(),
+        'finish_drawing_form': FinishDrawingForm(),
+        'retry_drawing_form': RetryDrawingForm(),
         'image': image,
         'score': 0,
         'clear_canvas': clear_canvas,
-        'show_welcome': request.session['new_session'],
+        'show_welcome': not request.session.get('dont_show_welcome', False),
+        'last_drawing': last_drawing,
     })
 
 def track(request, id):
@@ -534,7 +572,8 @@ def track(request, id):
         drawing.track_session_index = request.session.get('image_index')
         drawing.save()
 
-        request.session['new_session'] = False
+        request.session['last_drawing_id'] = drawing.id
+        request.session['dont_show_welcome'] = True
         request.session['image_index'] = request.session.get('image_index') + 1
 
         track_session.score += drawing.score
@@ -542,14 +581,38 @@ def track(request, id):
         return HttpResponse(True)
 
 
+    last_drawing = None
+    if request.session.get('last_drawing_id'):
+        try:
+            last_drawing = Drawing.objects.get(id=request.session.get('last_drawing_id'))
+        except Drawing.DoesNotExist:
+            None
+
+
+    if request.method == 'POST':
+        form = RetryDrawingForm(request.POST)
+
+        if form.is_valid() and form.cleaned_data['retry_drawing']:
+            request.session['last_drawing_id'] = None
+            request.session['image_index'] = request.session.get('image_index') - 1
+
+            track_session.score -= last_drawing.score
+            track_session.save()
+
+            last_drawing.delete()
+            last_drawing = None
+
+
     try:
         image = TrackImage.objects.filter(track=track)[request.session.get('image_index')].image
     except IndexError:
         return render(request, 'completed.html', {
+            'retry_drawing_form': RetryDrawingForm(),
             'save_session_form': SaveSessionForm(),
             'discard_session_form': DiscardSessionForm(),
             'track_session': track_session,
             'drawings': Drawing.objects.filter(track_session=track_session),
+            'last_drawing': last_drawing,
         })
 
     request.session['image_id'] = image.id
@@ -557,13 +620,15 @@ def track(request, id):
 
 
     return render(request, 'game.html', {
-        'form': FinishDrawingForm(),
+        'finish_drawing_form': FinishDrawingForm(),
+        'retry_drawing_form': RetryDrawingForm(),
         'image': image,
         'score': track_session.score,
         'clear_canvas': clear_canvas,
         'image_number': request.session.get('image_index') + 1,
         'image_count': TrackImage.objects.filter(track=track).count(),
-        'show_welcome': request.session['new_session'],
+        'show_welcome': not request.session.get('dont_show_welcome', False),
+        'last_drawing': last_drawing,
     })
 
 def drawing(request, id):

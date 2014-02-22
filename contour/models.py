@@ -156,6 +156,9 @@ class Drawing(models.Model):
     drawing = models.ImageField(upload_to='drawings/')
     """:class:`django.db.models.ImageField` to the drawing on the filesystem."""
 
+    score_image = models.ImageField(upload_to='score_images/')
+    """:class:`django.db.models.ImageField` to the score image on the filesystem."""
+
     distance = models.FloatField()
     """The distance of between the drawing and the original (edge) image."""
 

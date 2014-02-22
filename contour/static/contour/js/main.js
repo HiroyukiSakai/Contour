@@ -29,6 +29,7 @@ $(function() {
 
     $('#discard-modal').modal('show');
     $('#welcome-modal').modal('show');
+    $('#last-drawing-modal').modal('show');
 
     $(window).resize(function() {
         $('#refresh-modal').modal('show') ;

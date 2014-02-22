@@ -31,6 +31,12 @@ class FinishEdgeImageForm(forms.Form):
     finish_edge_image = forms.BooleanField(required=True, initial=True)
     image_id = forms.IntegerField(required=True)
 
+class RetryDrawingForm(forms.Form):
+    """Form used for to retry drawings.
+
+    """
+    retry_drawing = forms.BooleanField(required=True, initial=True)
+
 class FinishDrawingForm(forms.Form):
     """Form used for the submission of drawings.
 

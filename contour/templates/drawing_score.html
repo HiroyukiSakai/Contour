@@ -25,6 +25,7 @@
                 <th>Original</th>
                 <th>Edge image</th>
                 <th>Drawing</th>
+                <th>Score image</th>
                 <th>Score</th>
             </tr>
         </thead>
@@ -34,11 +35,13 @@
                 <td><a href="{{ MEDIA_URL }}{{ drawing.image.image }}" class="magnific-popup-item" title="{{ drawing.image.title }}{% if drawing.image.author %} by {{ drawing.image.author }}{% endif %}"><i class="fa fa-external-link"></i></a></td>
                 <td><a href="{{ MEDIA_URL }}{{ drawing.image.edge_image }}" class="magnific-popup-item" title="{{ drawing.image.title }} edge image"><i class="fa fa-external-link"></i></a></td>
                 <td><a href="{{ MEDIA_URL }}{{ drawing.drawing }}" class="magnific-popup-item" title="{{ drawing.image.title }} drawing"><i class="fa fa-external-link"></i></a></td>
+                <td><a href="{{ MEDIA_URL }}{{ drawing.score_image }}" class="magnific-popup-item" title="{{ drawing.image.title }} score image"><i class="fa fa-external-link"></i></a></td>
                 <td>{{ drawing.score|floatformat:2 }}</td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
