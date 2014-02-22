@@ -64,24 +64,58 @@
 <span class="c">#   You should have received a copy of the GNU General Public License</span>
 <span class="c">#   along with Contour.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 
+<span class="sd">&quot;&quot;&quot;Forms which describe the asynchronous communication between server and client.</span>
+
+<span class="sd">.. moduleauthor:: Hiroyuki Sakai &lt;hiroyuki.sakai@student.tuwien.ac.at&gt;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
 
 
+<div class="viewcode-block" id="FinishEdgeImageForm"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.forms.FinishEdgeImageForm">[docs]</a><span class="k">class</span> <span class="nc">FinishEdgeImageForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form used for the submission of drawings.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">finish_edge_image</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">image_id</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="RetryDrawingForm"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.forms.RetryDrawingForm">[docs]</a><span class="k">class</span> <span class="nc">RetryDrawingForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form used for to retry drawings.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">retry_drawing</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</div>
 <div class="viewcode-block" id="FinishDrawingForm"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.forms.FinishDrawingForm">[docs]</a><span class="k">class</span> <span class="nc">FinishDrawingForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
-    <span class="n">finish_drawing</span>  <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Form used for the submission of drawings.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">finish_drawing</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="DiscardSessionForm"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.forms.DiscardSessionForm">[docs]</a><span class="k">class</span> <span class="nc">DiscardSessionForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form used for the discarding of sessions.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">discard_session</span>  <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="SaveSessionForm"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.forms.SaveSessionForm">[docs]</a><span class="k">class</span> <span class="nc">SaveSessionForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form used for the saving of track sessions (for highscore tracking).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
     <span class="n">save_session</span>  <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="UploadFileForm"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.forms.UploadFileForm">[docs]</a><span class="k">class</span> <span class="nc">UploadFileForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form used for the upload of files.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">file</span>  <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
 </div>
 <div class="viewcode-block" id="SearchFlickrForm"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.forms.SearchFlickrForm">[docs]</a><span class="k">class</span> <span class="nc">SearchFlickrForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form used for the submitting the Flickr search query.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
     <span class="n">search_flickr</span>  <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span></div>

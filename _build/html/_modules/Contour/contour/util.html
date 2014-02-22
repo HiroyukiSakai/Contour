@@ -64,7 +64,7 @@
 <span class="c">#   You should have received a copy of the GNU General Public License</span>
 <span class="c">#   along with Contour.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 
-<span class="sd">&quot;&quot;&quot;A module containing helper functions..</span>
+<span class="sd">&quot;&quot;&quot;A module containing helper functions.</span>
 
 <span class="sd">.. moduleauthor:: Hiroyuki Sakai &lt;hiroyuki.sakai@student.tuwien.ac.at&gt;</span>
 
@@ -75,11 +75,15 @@
 <span class="n">slugify_strip_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;[^\w\s-]&#39;</span><span class="p">)</span>
 <span class="n">slugify_hyphenate_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;[-\s]+&#39;</span><span class="p">)</span>
 <div class="viewcode-block" id="slugify"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.util.slugify">[docs]</a><span class="k">def</span> <span class="nf">slugify</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Normalizes string, converts to lowercase, removes non-alpha characters,</span>
+    <span class="sd">&quot;&quot;&quot;Normalizes string, converts to lowercase, removes non-alpha characters,</span>
 <span class="sd">    and converts spaces to hyphens.</span>
 
 <span class="sd">    From Django&#39;s &quot;django/template/defaultfilters.py&quot;.</span>
+
+<span class="sd">    :param value: The unsanitized string.</span>
+<span class="sd">    :type value: string.</span>
+<span class="sd">    :returns: string -- The sanitized string.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">unicodedata</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">):</span>

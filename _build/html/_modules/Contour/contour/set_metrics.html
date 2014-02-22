@@ -72,10 +72,10 @@
     <span class="sd">&quot;&quot;&quot;Calculate the Hausdorff distance [1] between two sets.</span>
 
 <span class="sd">    :param a: Array containing the coordinates of ``N`` points in an ``M`` dimensional space.</span>
-<span class="sd">    :type a: numpy.array.</span>
+<span class="sd">    :type a: ndarray.</span>
 <span class="sd">    :param b: Array containing the coordinates of ``N`` points in an ``M`` dimensional space.</span>
-<span class="sd">    :type b: numpy.array.</span>
-<span class="sd">    :returns: float -- the distance.</span>
+<span class="sd">    :type b: ndarray.</span>
+<span class="sd">    :returns: float -- The Hausdorff distance between the sets represented by ``a`` and ``b`` using Euclidian distance to calculate the distance between members of the sets.</span>
 
 <span class="sd">    .. [1] http://en.wikipedia.org/wiki/Hausdorff_distance</span>
 
@@ -101,30 +101,16 @@
 
 </div>
 <div class="viewcode-block" id="hausdorff_distance_region"><a class="viewcode-back" href="../../../Contour.contour.html#Contour.contour.set_metrics.hausdorff_distance_region">[docs]</a><span class="k">def</span> <span class="nf">hausdorff_distance_region</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate the Hausdorff distance [1]_ between two binary images.</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the Hausdorff distance [2] between two binary images.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    a, b : ndarray, dtype=bool</span>
-<span class="sd">        Arrays where ``True`` represents a point that is included in a</span>
-<span class="sd">        set of points. Both arrays must have the same shape.</span>
+<span class="sd">    :param a: Array where ``True`` represents a point that is included in a set of points. Both arrays must have the same shape.</span>
+<span class="sd">    :type a: ndarray, dtype=bool.</span>
+<span class="sd">    :param b: Array where ``True`` represents a point that is included in a set of points. Both arrays must have the same shape.</span>
+<span class="sd">    :type b: ndarray, dtype=bool.</span>
+<span class="sd">    :returns: float -- The Hausdorff distance between the sets represented by ``a`` and ``b`` using Euclidian distance to calculate the distance between members of the sets.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    distance : float</span>
-<span class="sd">        The Hausdorff distance between the sets represented by ``a`` and ``b``</span>
-<span class="sd">        using Euclidian distance to calculate the distance between members of</span>
-<span class="sd">        the sets.</span>
+<span class="sd">    .. [2] http://en.wikipedia.org/wiki/Hausdorff_distance</span>
 
-<span class="sd">    See also</span>
-<span class="sd">    --------</span>
-<span class="sd">    hausdorff_distance : Function calculating the Hausdorff distance operating</span>
-<span class="sd">        directly on sets of points.</span>
-
-<span class="sd">    References</span>
-<span class="sd">    ----------</span>
-<span class="sd">    .. [1] http://en.wikipedia.org/wiki/Hausdorff_distance</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">bool</span> <span class="ow">or</span> <span class="n">b</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Arrays must have dtype = </span><span class="se">\&#39;</span><span class="s">bool</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="p">)</span>
