@@ -2,7 +2,7 @@
 
 Web-based drawing game.
 
-## Knows limitations
+## Known limitations
 
 * The third party component [Literally Canvas](http://literallycanvas.com), which is used for the interactive drawing canvases, is currently not working on the standard browser on Samsung’s Android devices. The best way to play Contour on such devices is to use the Chrome web browser.
 * The calculation of the score is inconsistent among different devices (e.g. computers, tablets and smartphones) since the line thickness is absolute whereas the canvas resizes relative to the viewport. This means that the score calculation is based on a thicker line on smaller devices.
