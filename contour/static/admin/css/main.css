@@ -1,0 +1,137 @@
+/*
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+.edit-edge-image-form,
+.edit-edge-image-form .literally .toolbar
+{
+    background-color: #f5f5f5;
+}
+
+.edit-edge-image-form .literally canvas {
+    background: no-repeat center center;
+    background-size: auto 100%;
+}
+
+.edit-edge-image-form .literally button.button {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.edit-edge-image-form .literally .toolbar-row-right {
+    width: 16em;
+}
+
+
+.edit-edge-image-form .append-to-literally-toolbar {
+    display: none;
+}
+
+.edit-edge-image-form .literally .append-to-literally-toolbar,
+.edit-edge-image-form .literally .append-to-literally-toolbar form {
+    display: inline-block;
+}
+
+.edit-edge-image-form .literally .action-buttons > :nth-child(3),
+.edit-edge-image-form .literally .zoom-display {
+    display:none;
+}
+
+.edit-edge-image-form .literally .button {
+    background-color: White;
+    background-image: none; /* four times to override vendor specific styles */
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    line-height: 22px;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    text-shadow: none;
+}
+
+.edit-edge-image-form .literally .button:hover {
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+
+.edit-edge-image-form .literally .button.active {
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+.edit-edge-image-form .literally .button.danger {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: White;
+}
+
+.edit-edge-image-form .literally .button.danger:hover {
+    background-color: #d2322d;
+    border-color: #ac2925;
+}
+
+.edit-edge-image-form .literally .button.success {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: White;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.edit-edge-image-form .literally .button.success:hover {
+    background-color: #47a447;
+    border-color: #398439;
+}
+
+.edit-edge-image-form .literally .button-group .button:first-child {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.edit-edge-image-form .literally .button-group .button:last-child {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.edit-edge-image-form .literally .tool-image-wrapper {
+    padding-top: 2px;
+}
+
+.edit-edge-image-form .literally .toolbar {
+    bottom: -61px !important;
+}
+
+.edit-edge-image-form .literally .toolbar-row {
+    border-color: #ccc;
+}
+
+.edit-edge-image-form .separate-backgrounds {
+    margin: 0 auto;
+    position: relative;
+}
+
+.edit-edge-image-form .separate-background,
+.edit-edge-image-form .literally.separate-backgrounds {
+    background-color: transparent;
+    left: 0;
+    position: absolute;
+    top: 0;
+}

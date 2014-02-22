@@ -28,6 +28,7 @@ $(function() {
     });
 
     $('#discard-modal').modal('show');
+    $('#welcome-modal').modal('show');
 
     $(window).resize(function() {
         $('#refresh-modal').modal('show') ;
@@ -131,7 +132,7 @@ $(function() {
                         success: function(data) {
                             localStorage.removeItem(localStorageKey);
                             location.reload();
-                        },
+                        }
                     });
                 });
             }

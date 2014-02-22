@@ -24,11 +24,18 @@
 from django import forms
 
 
+class FinishEdgeImageForm(forms.Form):
+    """Form used for the submission of drawings.
+
+    """
+    finish_edge_image = forms.BooleanField(required=True, initial=True)
+    image_id = forms.IntegerField(required=True)
+
 class FinishDrawingForm(forms.Form):
     """Form used for the submission of drawings.
 
     """
-    finish_drawing  = forms.BooleanField(required=True, initial=True)
+    finish_drawing = forms.BooleanField(required=True, initial=True)
 
 class DiscardSessionForm(forms.Form):
     """Form used for the discarding of sessions.

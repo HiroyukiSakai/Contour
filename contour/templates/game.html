@@ -34,6 +34,27 @@ var imageHeight = {{ image.edge_image.height }};
 {% endif %}
 </script>
 
+{% if show_welcome %}
+<div class="modal fade" id="welcome-modal" tabindex="-1" role="dialog" aria-labelledby="welcome-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" id="welcome-modal-label"><i class="fa fa-smile-o"></i> Welcome to Contour!</h2>
+            </div>
+            <div class="modal-body">
+                <p>You can use any touch or pointer device to draw on the canvas. Try to match the given image as good as possible!</p>
+                <p>You can clear the canvas by pressing "Clear". Moreover, you can undo and redo your actions with the arrow buttons.</p>
+                <p>By pressing "Next image" you complete your drawing and you will be taken to the next screen.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif%}
+
 <div class="modal fade" id="processing-modal" tabindex="-1" role="dialog" aria-labelledby="processing-modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -84,7 +105,7 @@ var imageHeight = {{ image.edge_image.height }};
     <form method="post" id="finish-drawing-form">
         {% csrf_token %}
         {{ form.finish_drawing.as_hidden }}
-        <button type="submit" class="button success">Finish</button>
+        <button type="submit" class="button success">Next image</button>
     </form>
 </div>
 {% endblock %}

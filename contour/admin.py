@@ -40,8 +40,25 @@ class TrackAdmin(admin.ModelAdmin):
     """
     inlines = [TrackImageInline]
 
+class ImageAdmin(admin.ModelAdmin):
+    """Describes the representation of images in the admin interface.
+
+    """
+    class Media:
+        js = ['admin/js/main.js',]
+
+    def add_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        #extra_context['show_edit_edge_image'] = True
+        return super(ImageAdmin, self).add_view(request, extra_context=extra_context)
+
+    def change_view(self, request, object_id, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_edit_edge_image'] = True
+        return super(ImageAdmin, self).change_view(request, object_id, extra_context=extra_context)
+
 admin.site.register(Track, TrackAdmin)
-admin.site.register(Image)
+admin.site.register(Image, ImageAdmin)
 admin.site.register(TrackSession)
 admin.site.register(Drawing)
 admin.site.register(Player)

@@ -1,0 +1,61 @@
+{% extends "admin/base_site.html" %}
+
+{% comment %}
+    Contour  Copyright (C) 2013-2014  Hiroyuki Sakai
+
+    This file is part of Contour.
+
+    Contour is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Contour is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Contour.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% block title %}Edit edge image | Django site admin{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="{{ STATIC_URL }}admin/js/vendor/jquery-2.1.0.min.js"></script>
+<script src="{{ STATIC_URL }}admin/js/vendor/underscore-min.js"></script>
+<script src="{{ STATIC_URL }}admin/vendor/literallycanvas/js/literallycanvas.jquery.min.js"></script>
+<script src="{{ STATIC_URL }}admin/js/main.js"></script>
+<script>
+var imageWidth = {{ image.edge_image.width }};
+var imageHeight = {{ image.edge_image.height }};
+</script>
+{% endblock%}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/vendor/literallycanvas/css/literally.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/main.css" />
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} edit-edge-image-form{% endblock %}
+
+{% block content %}
+<a href="/admin/contour/image/{{ image.id }}/">Back to image form</a>
+<div class="separate-backgrounds" style="width: {{ image.edge_image.width }}px; height: {{ image.edge_image.height|add:"61" }}px;">
+    <img class="separate-background-image" src="{{ MEDIA_URL }}{{ image.edge_image }}">
+    <div class="literally separate-backgrounds" style="width: {{ image.edge_image.width }}px; height: {{ image.edge_image.height }}px;">
+        <canvas>
+        </canvas>
+    </div>
+</div>
+<div class="append-to-literally-toolbar">
+    <form method="post" id="finish-edge-image-form">
+        {% csrf_token %}
+        {{ form.finish_edge_image.as_hidden }}
+        <input type="hidden" name="image_id" value="{{ image.id }}">
+        <button type="submit" class="button success">Save</button>
+    </form>
+</div>
+{% endblock %}

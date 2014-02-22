@@ -21,7 +21,7 @@
 
 """
 
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import patterns, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -30,6 +30,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^admin/contour/edge_image/(\d+)/$', 'Contour.contour.views.admin_edge_image'),
+
     url(r'^$', 'Contour.contour.views.index'),
     url(r'^canvas/$', 'Contour.contour.views.canvas'),
     url(r'^canvases/(\d+)/$', 'Contour.contour.views.canvas'),

@@ -57,6 +57,7 @@ def create_session(request, view_name, id):
 
     """
     if not request.session.get('is_playing'):
+        request.session['new_session'] = True
         request.session['is_playing'] = True
         request.session['view_name'] = view_name
         request.session['id'] = id
@@ -68,6 +69,7 @@ def clear_session(request):
     :type request: :class:`django.http.HttpRequest`.
 
     """
+    request.session['new_session'] = False
     request.session['is_playing'] = False
     request.session['view_name'] = None
     request.session['id'] = None
@@ -186,9 +188,21 @@ def process_image(request, image):
         temp_filename = '/tmp/' + request.session.session_key + '.png'
         io.imsave(temp_filename, ~edges * 1.)
         image.edge_image.save(slugify(os.path.splitext(os.path.basename(image.image.name))[0]) + '.png', File(open(temp_filename)))
+        os.remove(temp_filename)
+
+    if not image.dilated_edge_image:
+        edge_image = io.imread(os.path.join(settings.MEDIA_ROOT, image.edge_image.name), as_grey=True)
+        edge_image = edge_image.astype(np.float64)
+
+        if edge_image.max() > 1.:
+            edge_image /= 255.
+
+        # map values greater .5 as edge
+        edge_image = (1. - edge_image) / .5
 
         # save dilated edge image
-        io.imsave(temp_filename, ~ndimage.binary_dilation(edges, iterations=2) * 1.)
+        temp_filename = '/tmp/' + request.session.session_key + '.png'
+        io.imsave(temp_filename, ~ndimage.binary_dilation(edge_image, iterations=2) * 1.)
         image.dilated_edge_image.save(slugify(os.path.splitext(os.path.basename(image.image.name))[0]) + '.png', File(open(temp_filename)))
         os.remove(temp_filename)
 
@@ -261,6 +275,53 @@ def handle_finished_drawing(request):
                 os.remove(temp_filename)
 
                 return drawing
+    return
+
+def handle_finished_edge_image(request):
+    """This function is called as soon as the admin finishes his drawing.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :returns: :class:`models.Drawing` -- The created drawing object.
+
+    """
+    if request.method == 'POST':
+        form = FinishEdgeImageForm(request.POST)
+
+        if form.is_valid() and form.cleaned_data['finish_edge_image']:
+            # save new edge image
+            image_data = base64.b64decode(request.POST['image'])
+            temp_filename = '/tmp/' + request.session.session_key + '.png'
+            file = open(temp_filename, 'wb')
+            file.write(image_data)
+            file.close()
+
+            image = Image.objects.get(id=form.cleaned_data['image_id'])
+
+            im = PImage.open(temp_filename)
+            im = im.convert("RGB")
+            im.save(temp_filename, "PNG")
+
+            edge_image = io.imread(temp_filename, as_grey=True)
+            edge_image = misc.imresize(edge_image, (image.edge_image.height, image.edge_image.width), mode='F')
+            edge_image = edge_image.astype(np.float64)
+
+            # correct ranges of images if necessary
+            if edge_image.max() > 1.:
+                edge_image /= 255.
+
+            # save edge image
+            image.edge_image.save(image.edge_image.name, File(open(temp_filename)))
+
+            # delete old computed values
+            image.max_distance = None
+            image.dilated_edge_image.delete()
+            image.save()
+
+            # delete temporary file
+            os.remove(temp_filename)
+
+            return image.edge_image
     return
 
 def handle_uploaded_file(request, form):
@@ -405,6 +466,7 @@ def canvas(request, id=None):
 
     drawing = handle_finished_drawing(request)
     if drawing:
+        request.session['new_session'] = False
         request.session['drawing_id'] = drawing.id
         request.session['image_index'] = request.session.get('image_index') + 1
         return HttpResponse(True)
@@ -425,6 +487,7 @@ def canvas(request, id=None):
         'image': image,
         'score': 0,
         'clear_canvas': clear_canvas,
+        'show_welcome': request.session['new_session'],
     })
 
 def track(request, id):
@@ -471,6 +534,7 @@ def track(request, id):
         drawing.track_session_index = request.session.get('image_index')
         drawing.save()
 
+        request.session['new_session'] = False
         request.session['image_index'] = request.session.get('image_index') + 1
 
         track_session.score += drawing.score
@@ -499,6 +563,7 @@ def track(request, id):
         'clear_canvas': clear_canvas,
         'image_number': request.session.get('image_index') + 1,
         'image_count': TrackImage.objects.filter(track=track).count(),
+        'show_welcome': request.session['new_session'],
     })
 
 def drawing(request, id):
@@ -544,4 +609,33 @@ def session(request, id):
     return render(request, 'session.html', {
         'track_session': track_session,
         'drawings': Drawing.objects.filter(track_session=track_session),
+    })
+
+def admin_edge_image(request, id):
+    """This is the view function to edit the edge images in the admin section.
+
+    :param request: The request object containing the user request.
+    :type request: :class:`django.http.HttpRequest`.
+    :param id: The id of the requested :class:`.models.Image`.
+    :type id: int.
+    :returns: :class:`django.http.HttpResponse` -- The rendered template as response.
+
+    """
+    if id:
+        id = long(id)
+
+    try:
+        image = Image.objects.get(id=id)
+    except Image.DoesNotExist:
+        raise Http404
+
+    process_image(request, image)
+
+    edge_image = handle_finished_edge_image(request)
+    if edge_image:
+        return HttpResponse(True)
+
+    return render(request, 'admin/edge_image.html', {
+        'form': FinishEdgeImageForm(),
+        'image': image,
     })
