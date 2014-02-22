@@ -14,7 +14,7 @@
 
 
 \title{Contour Documentation}
-\date{February 09, 2014}
+\date{February 22, 2014}
 \release{1.0.1}
 \author{Hiroyuki Sakai}
 \newcommand{\sphinxlogo}{}
@@ -151,6 +151,46 @@ The urls module maps URL patterns of requested URLs to Django views.
 \subsubsection{\texttt{admin} Module}
 \label{Contour.contour:admin-module}\label{Contour.contour:module-Contour.contour.admin}\index{Contour.contour.admin (module)}
 Describes the representation of models in the admin interface.
+\index{ImageAdmin (class in Contour.contour.admin)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.admin.ImageAdmin}\pysiglinewithargsret{\strong{class }\code{Contour.contour.admin.}\bfcode{ImageAdmin}}{\emph{model}, \emph{admin\_site}}{}
+Bases: \code{django.contrib.admin.options.ModelAdmin}
+
+Describes the representation of images in the admin interface.
+\index{ImageAdmin.Media (class in Contour.contour.admin)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.admin.ImageAdmin.Media}\pysigline{\strong{class }\bfcode{Media}}~\index{js (Contour.contour.admin.ImageAdmin.Media attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.admin.ImageAdmin.Media.js}\pysigline{\bfcode{js}\strong{ = {[}'admin/js/main.js'{]}}}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{add\_view() (Contour.contour.admin.ImageAdmin method)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.admin.ImageAdmin.add_view}\pysiglinewithargsret{\code{ImageAdmin.}\bfcode{add\_view}}{\emph{request}, \emph{extra\_context=None}}{}
+\end{fulllineitems}
+
+\index{change\_view() (Contour.contour.admin.ImageAdmin method)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.admin.ImageAdmin.change_view}\pysiglinewithargsret{\code{ImageAdmin.}\bfcode{change\_view}}{\emph{request}, \emph{object\_id}, \emph{extra\_context=None}}{}
+\end{fulllineitems}
+
+\index{media (Contour.contour.admin.ImageAdmin attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.admin.ImageAdmin.media}\pysigline{\code{ImageAdmin.}\bfcode{media}}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
 \index{TrackAdmin (class in Contour.contour.admin)}
 
 \begin{fulllineitems}
@@ -218,7 +258,7 @@ Form used for the discarding of sessions.
 \index{base\_fields (Contour.contour.forms.DiscardSessionForm attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.forms.DiscardSessionForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`discard\_session': \textless{}django.forms.fields.BooleanField object at 0x2ee0110\textgreater{}\}}}
+\phantomsection\label{Contour.contour:Contour.contour.forms.DiscardSessionForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`discard\_session': \textless{}django.forms.fields.BooleanField object at 0x3850c10\textgreater{}\}}}
 \end{fulllineitems}
 
 \index{media (Contour.contour.forms.DiscardSessionForm attribute)}
@@ -240,13 +280,57 @@ Form used for the submission of drawings.
 \index{base\_fields (Contour.contour.forms.FinishDrawingForm attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.forms.FinishDrawingForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`finish\_drawing': \textless{}django.forms.fields.BooleanField object at 0x2ee0090\textgreater{}\}}}
+\phantomsection\label{Contour.contour:Contour.contour.forms.FinishDrawingForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`finish\_drawing': \textless{}django.forms.fields.BooleanField object at 0x3850690\textgreater{}\}}}
 \end{fulllineitems}
 
 \index{media (Contour.contour.forms.FinishDrawingForm attribute)}
 
 \begin{fulllineitems}
 \phantomsection\label{Contour.contour:Contour.contour.forms.FinishDrawingForm.media}\pysigline{\bfcode{media}}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{FinishEdgeImageForm (class in Contour.contour.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.forms.FinishEdgeImageForm}\pysiglinewithargsret{\strong{class }\code{Contour.contour.forms.}\bfcode{FinishEdgeImageForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}}{}
+Bases: \code{django.forms.forms.Form}
+
+Form used for the submission of drawings.
+\index{base\_fields (Contour.contour.forms.FinishEdgeImageForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.forms.FinishEdgeImageForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`finish\_edge\_image': \textless{}django.forms.fields.BooleanField object at 0x3867210\textgreater{}, `image\_id': \textless{}django.forms.fields.IntegerField object at 0x3867310\textgreater{}\}}}
+\end{fulllineitems}
+
+\index{media (Contour.contour.forms.FinishEdgeImageForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.forms.FinishEdgeImageForm.media}\pysigline{\bfcode{media}}
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{RetryDrawingForm (class in Contour.contour.forms)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.forms.RetryDrawingForm}\pysiglinewithargsret{\strong{class }\code{Contour.contour.forms.}\bfcode{RetryDrawingForm}}{\emph{data=None}, \emph{files=None}, \emph{auto\_id='id\_\%s'}, \emph{prefix=None}, \emph{initial=None}, \emph{error\_class=\textless{}class `django.forms.util.ErrorList'\textgreater{}}, \emph{label\_suffix=':'}, \emph{empty\_permitted=False}}{}
+Bases: \code{django.forms.forms.Form}
+
+Form used for to retry drawings.
+\index{base\_fields (Contour.contour.forms.RetryDrawingForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.forms.RetryDrawingForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`retry\_drawing': \textless{}django.forms.fields.BooleanField object at 0x3867110\textgreater{}\}}}
+\end{fulllineitems}
+
+\index{media (Contour.contour.forms.RetryDrawingForm attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.forms.RetryDrawingForm.media}\pysigline{\bfcode{media}}
 \end{fulllineitems}
 
 
@@ -262,7 +346,7 @@ Form used for the saving of track sessions (for highscore tracking).
 \index{base\_fields (Contour.contour.forms.SaveSessionForm attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.forms.SaveSessionForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`name': \textless{}django.forms.fields.CharField object at 0x2ee0190\textgreater{}, `save\_session': \textless{}django.forms.fields.BooleanField object at 0x2ee0250\textgreater{}\}}}
+\phantomsection\label{Contour.contour:Contour.contour.forms.SaveSessionForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`name': \textless{}django.forms.fields.CharField object at 0x3850d50\textgreater{}, `save\_session': \textless{}django.forms.fields.BooleanField object at 0x3850e10\textgreater{}\}}}
 \end{fulllineitems}
 
 \index{media (Contour.contour.forms.SaveSessionForm attribute)}
@@ -284,7 +368,7 @@ Form used for the submitting the Flickr search query.
 \index{base\_fields (Contour.contour.forms.SearchFlickrForm attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.forms.SearchFlickrForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`query': \textless{}django.forms.fields.CharField object at 0x2ee0450\textgreater{}, `search\_flickr': \textless{}django.forms.fields.BooleanField object at 0x2ee0590\textgreater{}, `sigma': \textless{}django.forms.fields.FloatField object at 0x2ee0610\textgreater{}\}}}
+\phantomsection\label{Contour.contour:Contour.contour.forms.SearchFlickrForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`query': \textless{}django.forms.fields.CharField object at 0x3850990\textgreater{}, `search\_flickr': \textless{}django.forms.fields.BooleanField object at 0x3850150\textgreater{}, `sigma': \textless{}django.forms.fields.FloatField object at 0x38500d0\textgreater{}\}}}
 \end{fulllineitems}
 
 \index{media (Contour.contour.forms.SearchFlickrForm attribute)}
@@ -306,7 +390,7 @@ Form used for the upload of files.
 \index{base\_fields (Contour.contour.forms.UploadFileForm attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.forms.UploadFileForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`file': \textless{}django.forms.fields.FileField object at 0x2ee02d0\textgreater{}, `sigma': \textless{}django.forms.fields.FloatField object at 0x2ee03d0\textgreater{}\}}}
+\phantomsection\label{Contour.contour:Contour.contour.forms.UploadFileForm.base_fields}\pysigline{\bfcode{base\_fields}\strong{ = \{`file': \textless{}django.forms.fields.FileField object at 0x3850d10\textgreater{}, `sigma': \textless{}django.forms.fields.FloatField object at 0x3850a90\textgreater{}\}}}
 \end{fulllineitems}
 
 \index{media (Contour.contour.forms.UploadFileForm attribute)}
@@ -401,7 +485,7 @@ The reference to the {\hyperref[Contour.contour:Contour.contour.models.Image]{\c
 \index{objects (Contour.contour.models.Drawing attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.models.Drawing.objects}\pysigline{\code{Drawing.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x3171e90\textgreater{}}}
+\phantomsection\label{Contour.contour:Contour.contour.models.Drawing.objects}\pysigline{\code{Drawing.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x356c4d0\textgreater{}}}
 \end{fulllineitems}
 
 \index{player (Contour.contour.models.Drawing attribute)}
@@ -417,6 +501,14 @@ The reference to the {\hyperref[Contour.contour:Contour.contour.models.Player]{\
 \begin{fulllineitems}
 \phantomsection\label{Contour.contour:Contour.contour.models.Drawing.score}\pysigline{\code{Drawing.}\bfcode{score}\strong{ = None}}
 The attained score for the drawing.
+
+\end{fulllineitems}
+
+\index{score\_image (Contour.contour.models.Drawing attribute)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.models.Drawing.score_image}\pysigline{\code{Drawing.}\bfcode{score\_image}}
+\code{django.db.models.ImageField} to the score image on the filesystem.
 
 \end{fulllineitems}
 
@@ -543,7 +635,7 @@ This is a value which is used for the score calculation.
 \index{objects (Contour.contour.models.Image attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.models.Image.objects}\pysigline{\code{Image.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x316e310\textgreater{}}}
+\phantomsection\label{Contour.contour:Contour.contour.models.Image.objects}\pysigline{\code{Image.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x3563810\textgreater{}}}
 \end{fulllineitems}
 
 \index{title (Contour.contour.models.Image attribute)}
@@ -617,7 +709,7 @@ The name of the player.
 \index{objects (Contour.contour.models.Player attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.models.Player.objects}\pysigline{\code{Player.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x316efd0\textgreater{}}}
+\phantomsection\label{Contour.contour:Contour.contour.models.Player.objects}\pysigline{\code{Player.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x3566510\textgreater{}}}
 \end{fulllineitems}
 
 \index{tracksession\_set (Contour.contour.models.Player attribute)}
@@ -661,7 +753,7 @@ Bases: \code{django.core.exceptions.MultipleObjectsReturned}
 \index{objects (Contour.contour.models.Track attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.models.Track.objects}\pysigline{\code{Track.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x316e890\textgreater{}}}
+\phantomsection\label{Contour.contour:Contour.contour.models.Track.objects}\pysigline{\code{Track.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x3563d90\textgreater{}}}
 \end{fulllineitems}
 
 \index{trackimage\_set (Contour.contour.models.Track attribute)}
@@ -713,7 +805,7 @@ The reference to the {\hyperref[Contour.contour:Contour.contour.models.Image]{\c
 \index{objects (Contour.contour.models.TrackImage attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.models.TrackImage.objects}\pysigline{\code{TrackImage.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x316ed50\textgreater{}}}
+\phantomsection\label{Contour.contour:Contour.contour.models.TrackImage.objects}\pysigline{\code{TrackImage.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x3566290\textgreater{}}}
 \end{fulllineitems}
 
 \index{order (Contour.contour.models.TrackImage attribute)}
@@ -793,7 +885,7 @@ The creation time of the track session.
 \index{objects (Contour.contour.models.TrackSession attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{Contour.contour:Contour.contour.models.TrackSession.objects}\pysigline{\code{TrackSession.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x31716d0\textgreater{}}}
+\phantomsection\label{Contour.contour:Contour.contour.models.TrackSession.objects}\pysigline{\code{TrackSession.}\bfcode{objects}\strong{ = \textless{}django.db.models.manager.Manager object at 0x3566bd0\textgreater{}}}
 \end{fulllineitems}
 
 \index{player (Contour.contour.models.TrackSession attribute)}
@@ -918,6 +1010,28 @@ string -- The sanitized string.
 \subsubsection{\texttt{views} Module}
 \label{Contour.contour:module-Contour.contour.views}\label{Contour.contour:views-module}\index{Contour.contour.views (module)}
 Describes the views used in Contour.
+\index{admin\_edge\_image() (in module Contour.contour.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.views.admin_edge_image}\pysiglinewithargsret{\code{Contour.contour.views.}\bfcode{admin\_edge\_image}}{\emph{request}, \emph{id}}{}
+This is the view function to edit the edge images in the admin section.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\textbf{request} (\code{django.http.HttpRequest}.) -- The request object containing the user request.
+
+\item {} 
+\textbf{id} (\emph{int.}) -- The id of the requested {\hyperref[Contour.contour:Contour.contour.models.Image]{\code{models.Image}}}.
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+\code{django.http.HttpResponse} -- The rendered template as response.
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{canvas() (in module Contour.contour.views)}
 
 \begin{fulllineitems}
@@ -1059,6 +1173,22 @@ Returns a {\hyperref[Contour.contour:Contour.contour.models.Player]{\code{models
 \begin{fulllineitems}
 \phantomsection\label{Contour.contour:Contour.contour.views.handle_finished_drawing}\pysiglinewithargsret{\code{Contour.contour.views.}\bfcode{handle\_finished\_drawing}}{\emph{request}}{}
 This function is called as soon as the user finishes his drawing. It saves and associates his drawing to the running track session. It also assesses the score of the drawing.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\textbf{request} (\code{django.http.HttpRequest}.) -- The request object containing the user request.
+
+\item[{Returns}] \leavevmode
+\code{models.Drawing} -- The created drawing object.
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{handle\_finished\_edge\_image() (in module Contour.contour.views)}
+
+\begin{fulllineitems}
+\phantomsection\label{Contour.contour:Contour.contour.views.handle_finished_edge_image}\pysiglinewithargsret{\code{Contour.contour.views.}\bfcode{handle\_finished\_edge\_image}}{\emph{request}}{}
+This function is called as soon as the admin finishes his drawing.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
 \textbf{request} (\code{django.http.HttpRequest}.) -- The request object containing the user request.
