@@ -67,3 +67,10 @@ class Command(BaseCommand):
             filepath = os.path.join(settings.MEDIA_ROOT, drawings_dir, filename)
             self.stdout.write(filepath + '\n')
             os.remove(filepath)
+
+        score_images_dir = 'score_images'
+
+        for filename in os.listdir(os.path.join(settings.MEDIA_ROOT, score_images_dir)):
+            filepath = os.path.join(settings.MEDIA_ROOT, score_images_dir, filename)
+            self.stdout.write(filepath + '\n')
+            os.remove(filepath)
