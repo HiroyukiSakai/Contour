@@ -14,6 +14,7 @@ To install Contour on a server, follow these steps:
 
 1. Checkout the sources from this repository
 2. Create a secret.py containing the following information:
+    
     DATABASES: "A dictionary containing the settings for all databases to be used with Django" (https://docs.djangoproject.com/en/1.3/ref/settings/#databases)
     
     ALLOWED_HOSTS: "A list of strings representing the host/domain names that this Django site can serve." (https://docs.djangoproject.com/en/1.3/ref/settings/#allowed-hosts)
@@ -23,7 +24,6 @@ To install Contour on a server, follow these steps:
     Make sure to keep this information secret.
 3. Execute the following commands from the command line:
     1. python manage.py sql contour
-    
     2. python manage.py syncdb
     
     This makes sure, that the used models are reflected in the database
@@ -40,7 +40,19 @@ To install Contour on a server, follow these steps:
    
     Modify the paths as needed.
 5. Execute the following command to make sure, that the static files are in the static/ directory.
+    
     python manage.py collectstatic
+
+
+Please take a look at the Django documentation for further details: https://docs.djangoproject.com/en/1.3/.
+
+
+Use the following command, if you want to create the source code documentation on your server.
+
+sphinx-build -b htmml . _build/html/
+
+You need a working sphinx installation for this (http://sphinx-doc.org).
+
 
 ## Known limitations
 
