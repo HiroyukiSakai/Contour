@@ -4,40 +4,41 @@ A web-based drawing game
 
 ## Availability
 
-* The game is currently hosted at http://hiro.pythonanywhere.com/
-* The source code is available at https://github.com/HiroyukiSakai/Contour
-* The source code documentation is available at http://hiro.pythonanywhere.com/doc/
+* The game is currently hosted at <http://hiro.pythonanywhere.com/>.
+* The source code is available at <https://github.com/HiroyukiSakai/Contour>.
+* The source code documentation is available at <http://hiro.pythonanywhere.com/doc/>.
+* The author is reachable at <hiroyuki.sakai@student.tuwien.ac.at>.
 
 ## Quick install
 
 To install Contour on your server, follow these steps:
 
-### Checkout the sources from the repository
+**1. Checkout the sources from the repository**
 
-### Create a secret.py containing the following information:
+**2. Create a secret.py containing the following information:**
     
     DATABASES
     
-"A dictionary containing the settings for all databases to be used with Django" (https://docs.djangoproject.com/en/1.3/ref/settings/#databases)
+"A dictionary containing the settings for all databases to be used with Django" (<https://docs.djangoproject.com/en/1.3/ref/settings/#databases>)
     
     ALLOWED_HOSTS
 
-"A list of strings representing the host/domain names that this Django site can serve." (https://docs.djangoproject.com/en/1.3/ref/settings/#allowed-hosts)
+"A list of strings representing the host/domain names that this Django site can serve." (<https://docs.djangoproject.com/en/1.3/ref/settings/#allowed-hosts>)
     
     SECRET_KEY
 
-"A secret key for this particular Django installation." (https://docs.djangoproject.com/en/1.3/ref/settings/#secret-key)
+"A secret key for this particular Django installation." (<https://docs.djangoproject.com/en/1.3/ref/settings/#secret-key>)
     
 Make sure to keep this information secret.
 
-### Execute the following commands from the command line:
+**3. Execute the following commands from the command line:**
     
     python manage.py sql contour
     python manage.py syncdb
     
 This makes sure, that the used models are reflected in the database.
 
-### Create the following static aliases
+**4. Create the following static aliases**
 
     /static/admin/ to /usr/local/lib/python2.7/dist-packages/django/contrib/admin/media
     /static/ to Contour/static
@@ -51,20 +52,19 @@ This makes sure, that the used models are reflected in the database.
 
 Modify the paths as needed.
 
-### Execute the following command to copy the static files into the main directory for static files.
+**5. Execute the following command to copy the static files into the main directory for static files.**
     
     python manage.py collectstatic
 
-Please take a look at the Django documentation for further details: https://docs.djangoproject.com/en/1.3/.
+Please take a look at the Django documentation for further details: <https://docs.djangoproject.com/en/1.3/>.
 
-
-### Sphinx documentation
+** Sphinx documentation **
 
 Use the following command, if you want to create the source code documentation on your server.
 
     sphinx-build -b html . _build/html/
 
-You need a working sphinx installation for this (http://sphinx-doc.org).
+You need a working sphinx installation for this (<http://sphinx-doc.org>).
 
 ## Known limitations
 
