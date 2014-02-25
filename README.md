@@ -38,7 +38,7 @@ Make sure to keep this information secret.
     
 This makes sure, that the used models are reflected in the database.
 
-**4. Create the following static aliases**
+**4. Create the following static aliases:**
 
     /static/admin/ to /usr/local/lib/python2.7/dist-packages/django/contrib/admin/media
     /static/ to Contour/static
@@ -52,13 +52,13 @@ This makes sure, that the used models are reflected in the database.
 
 Modify the paths as needed.
 
-**5. Execute the following command to copy the static files into the main directory for static files.**
+**5. Execute the following command to copy the static files into the main directory for static files:**
     
     python manage.py collectstatic
 
 Please take a look at the Django documentation for further details: <https://docs.djangoproject.com/en/1.3/>.
 
-** Sphinx documentation **
+**Sphinx documentation**
 
 Use the following command, if you want to create the source code documentation on your server.
 
