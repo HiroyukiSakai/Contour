@@ -10,49 +10,61 @@ A web-based drawing game
 
 ## Quick install
 
-To install Contour on a server, follow these steps:
+To install Contour on your server, follow these steps:
 
-1. Checkout the sources from this repository
-2. Create a secret.py containing the following information:
+### Checkout the sources from the repository
+
+### Create a secret.py containing the following information:
     
-    DATABASES: "A dictionary containing the settings for all databases to be used with Django" (https://docs.djangoproject.com/en/1.3/ref/settings/#databases)
+    DATABASES
     
-    ALLOWED_HOSTS: "A list of strings representing the host/domain names that this Django site can serve." (https://docs.djangoproject.com/en/1.3/ref/settings/#allowed-hosts)
+"A dictionary containing the settings for all databases to be used with Django" (https://docs.djangoproject.com/en/1.3/ref/settings/#databases)
     
-    SECRET_KEY: "A secret key for this particular Django installation." (https://docs.djangoproject.com/en/1.3/ref/settings/#secret-key)
+    ALLOWED_HOSTS
+
+"A list of strings representing the host/domain names that this Django site can serve." (https://docs.djangoproject.com/en/1.3/ref/settings/#allowed-hosts)
     
-    Make sure to keep this information secret.
-3. Execute the following commands from the command line:
-    1. python manage.py sql contour
-    2. python manage.py syncdb
+    SECRET_KEY
+
+"A secret key for this particular Django installation." (https://docs.djangoproject.com/en/1.3/ref/settings/#secret-key)
     
-    This makes sure, that the used models are reflected in the database
-4. Create the following static aliases:
-    *       /static/admin/ to /usr/local/lib/python2.7/dist-packages/django/contrib/admin/media
-    *       /static/ to Contour/static
-    *       /media/ to Contour/media
-    *       /favicon.ico to Contour/static/contour/favicon.ico
-    *       /apple-touch-icon-precomposed.png to Contour/static/contour/apple-touch-icon-precomposed.png
-    *       /robots.txt to Contour/static/contour/robots.txt
-    *       /humans.txt to Contour/static/contour/humans.txt
-    *       /crossdomain.xml to Contour/static/contour/crossdomain.xml
-    *       /doc/ to Contour/_build/html
-   
-    Modify the paths as needed.
-5. Execute the following command to make sure, that the static files are in the static/ directory.
+Make sure to keep this information secret.
+
+### Execute the following commands from the command line:
+    
+    python manage.py sql contour
+    python manage.py syncdb
+    
+This makes sure, that the used models are reflected in the database.
+
+### Create the following static aliases
+
+    /static/admin/ to /usr/local/lib/python2.7/dist-packages/django/contrib/admin/media
+    /static/ to Contour/static
+    /media/ to Contour/media
+    /favicon.ico to Contour/static/contour/favicon.ico
+    /apple-touch-icon-precomposed.png to Contour/static/contour/apple-touch-icon-precomposed.png
+    /robots.txt to Contour/static/contour/robots.txt
+    /humans.txt to Contour/static/contour/humans.txt
+    /crossdomain.xml to Contour/static/contour/crossdomain.xml
+    /doc/ to Contour/_build/html
+
+Modify the paths as needed.
+
+### Execute the following command to copy the static files into the main directory for static files.
     
     python manage.py collectstatic
-
 
 Please take a look at the Django documentation for further details: https://docs.djangoproject.com/en/1.3/.
 
 
+### Sphinx documentation
+
 Use the following command, if you want to create the source code documentation on your server.
 
-sphinx-build -b htmml . _build/html/
+    sphinx-build -b html . _build/html/
 
 You need a working sphinx installation for this (http://sphinx-doc.org).
-
 
 ## Known limitations
 
